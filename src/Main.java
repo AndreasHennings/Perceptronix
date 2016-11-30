@@ -10,21 +10,22 @@ public class Main
 	 * @param args
 	 */
 	
-	Brain brain;
-	GithubBridge githubBridge;
-	UserInterface userInterface;
-	
+
 	
 	public static void main(String[] args)
 
 	{
 
+		Brain brain = new Brain(Config.CATEGORIES);
+		GithubBridge githubBridge = new GithubBridge();
+		UserInterface userInterface = new UserInterface();
+
+		System.out.println("Hello World!");
+
+
 	}
+
+
 	
-	public void init()
-	{
-		brain = new Brain(Config.CATEGORIES);
-		githubBridge = new GithubBridge();
-		userInterface = new UserInterface();		
-	}
+
 }
