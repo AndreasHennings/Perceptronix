@@ -21,13 +21,6 @@ public class Main
 
 		Brain brain = new Brain(Config.CATEGORIES);
 		GithubBridge githubBridge = new GithubBridge();
-		//UserInterface userInterface = new UserInterface();
-
-
-
-		System.out.println("Hello World!");
-
-
 
 	}
 

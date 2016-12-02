@@ -7,13 +7,10 @@ import javax.swing.*;
  */
 
 
-
 public class UserInterface
 {
     private JTextField title;
     private JPanel jPanel;
-
-
 
     public static void main()
     {
@@ -22,6 +19,5 @@ public class UserInterface
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
     }
 }
