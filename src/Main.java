@@ -14,13 +14,19 @@ public class Main
 	
 	public static void main(String[] args)
 
+
 	{
+
+		UserInterface.main();
 
 		Brain brain = new Brain(Config.CATEGORIES);
 		GithubBridge githubBridge = new GithubBridge();
-		UserInterface userInterface = new UserInterface();
+		//UserInterface userInterface = new UserInterface();
+
+
 
 		System.out.println("Hello World!");
+
 
 
 	}
