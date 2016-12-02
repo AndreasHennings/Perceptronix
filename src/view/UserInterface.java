@@ -9,8 +9,9 @@ import javax.swing.*;
 
 public class UserInterface
 {
-    private JTextField title;
     private JPanel jPanel;
+    private JTextField PERCEPTRONIXTextField;
+    private JTextField trainAITextField;
 
     public static void main()
     {
@@ -20,4 +21,6 @@ public class UserInterface
         frame.pack();
         frame.setVisible(true);
     }
+
+
 }
