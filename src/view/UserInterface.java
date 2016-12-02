@@ -13,6 +13,7 @@ public class UserInterface
     private JTextField PERCEPTRONIXTextField;
     private JTextField trainAITextField;
 
+    // this main() is called from Main.main
     public static void main()
     {
         JFrame frame = new JFrame("Perceptronix");
