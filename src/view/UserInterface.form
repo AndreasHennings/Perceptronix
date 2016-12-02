@@ -11,7 +11,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="d6471" class="javax.swing.JTextField" binding="PERCEPTRONIXTextField" default-binding="true">
+      <component id="d6471" class="javax.swing.JTextField" binding="title">
         <constraints border-constraint="North"/>
         <properties>
           <background color="-16777216"/>

@@ -10,7 +10,7 @@ import javax.swing.*;
 public class UserInterface
 {
     private JPanel jPanel;
-    private JTextField PERCEPTRONIXTextField;
+    private JTextField title;
     private JTextField trainAITextField;
 
     // this main() is called from Main.main
