@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.UserInterface">
-  <grid id="27dc6" binding="jPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+  <grid id="27dc6" binding="jPanel" layout-manager="GridBagLayout">
     <constraints>
       <xy x="20" y="20" width="800" height="600"/>
     </constraints>
@@ -11,28 +11,141 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="d6471" class="javax.swing.JTextField" binding="title">
-        <constraints border-constraint="North"/>
+      <component id="fcce2" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
         <properties>
-          <background color="-16777216"/>
-          <caretColor color="-65536"/>
-          <disabledTextColor color="-65536"/>
-          <editable value="false"/>
-          <enabled value="false"/>
-          <font name="Entangled BRK" size="72"/>
-          <foreground color="-65536"/>
+          <background color="-14988775"/>
           <horizontalAlignment value="0"/>
-          <text value="PERCEPTRONIX"/>
+          <preferredSize width="50" height="30"/>
         </properties>
       </component>
-      <component id="32a20" class="javax.swing.JTextField" binding="trainAITextField" default-binding="true">
-        <constraints border-constraint="West"/>
+      <component id="343e1" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
         <properties>
-          <alignmentX value="0.0"/>
-          <alignmentY value="0.1"/>
-          <autoscrolls value="false"/>
+          <background color="-14988775"/>
           <horizontalAlignment value="0"/>
-          <text value="Train AI"/>
+          <preferredSize width="50" height="30"/>
+        </properties>
+      </component>
+      <component id="8599b" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-14988775"/>
+          <horizontalAlignment value="0"/>
+          <preferredSize width="50" height="30"/>
+        </properties>
+      </component>
+      <component id="e7c2c" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-14988775"/>
+          <horizontalAlignment value="0"/>
+          <preferredSize width="50" height="30"/>
+        </properties>
+      </component>
+      <component id="a219c" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+        <constraints>
+          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-14988775"/>
+          <horizontalAlignment value="0"/>
+          <preferredSize width="50" height="30"/>
+        </properties>
+      </component>
+      <component id="9c6cf" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+        <constraints>
+          <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-14988775"/>
+          <horizontalAlignment value="0"/>
+          <preferredSize width="50" height="30"/>
+        </properties>
+      </component>
+      <component id="60259" class="javax.swing.JTextField" binding="textField7" default-binding="true">
+        <constraints>
+          <grid row="2" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-14988775"/>
+          <horizontalAlignment value="0"/>
+          <preferredSize width="50" height="30"/>
+        </properties>
+      </component>
+      <component id="76ea7" class="javax.swing.JTextField" binding="textField8" default-binding="true">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-14988775"/>
+          <horizontalAlignment value="0"/>
+          <preferredSize width="14" height="100"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="8342b" class="javax.swing.JTextField" default-binding="true">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-14988775"/>
+          <horizontalAlignment value="0"/>
+          <preferredSize width="14" height="100"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="63a10" class="javax.swing.JButton" binding="trainAIUsingListButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Train AI using list of urls"/>
+        </properties>
+      </component>
+      <component id="c692d" class="javax.swing.JButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Categorize Github Repo"/>
         </properties>
       </component>
     </children>
