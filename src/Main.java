@@ -18,10 +18,8 @@ public class Main
 	{
 
 		UserInterface.main();
-		UserInterface ui = new UserInterface();
 
-
-
+		UserInterface ui = new UserInterface(Config.CATEGORIES);
 		Brain brain = new Brain(Config.CATEGORIES);
 		GithubBridge githubBridge = new GithubBridge();
 

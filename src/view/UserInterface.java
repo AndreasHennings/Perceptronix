@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 public class UserInterface extends JPanel
 
 {
-    //private static JButton chooseTextfileButton;
     private JPanel jPanel;
     private JTextField textField1;
     private JTextField textField2;
@@ -34,8 +33,12 @@ public class UserInterface extends JPanel
         frame.pack();
         frame.setVisible(true);
     }
-
     public UserInterface()
+    {
+        init();
+    }
+
+    public UserInterface (String[] categories)
     {
         init();
     }
@@ -50,8 +53,6 @@ public class UserInterface extends JPanel
                 JFileChooser fc;
                 fc = new JFileChooser();
                 int returnVal = fc.showOpenDialog(UserInterface.this);
-
-
             }
         });
 
