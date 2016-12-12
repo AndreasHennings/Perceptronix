@@ -15,9 +15,8 @@ public class UserInterface extends JPanel
 {
     private JPanel jPanel;
     private JButton trainAIUsingListButton;
-    private JButton runButton;
-    private JTextField statusReadyTextField;
-    private JProgressBar progressBar1;
+    private JTextArea textArea1;
+    private JTextField brainStatus;
 
     // this main() is called from Perceptronix.main
     public static void main()
@@ -40,6 +39,15 @@ public class UserInterface extends JPanel
 
     public void init()
     {
+        /*
+        for (int i =0; i<40;i++)
+        {
+            textArea1.append("\nblabla");
+        }
+        */
+
+
+
         /*
         trainAIUsingListButton.addActionListener(new ActionListener()
         {
