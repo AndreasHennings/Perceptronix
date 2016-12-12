@@ -2,14 +2,18 @@ package controler;
 
 public class GithubBridge
 {
-	public GithubBridge()
+	DownloadListener downloadListener;
+
+	public GithubBridge(DownloadListener downloadListener)
 	{
-		
+		this.downloadListener = downloadListener;
+		downloadListener.onDownloadFinished();
 	}
 	
 	public String[] getAllKeywords(String url)
 	{
 		return null;
 	}
+
 
 }

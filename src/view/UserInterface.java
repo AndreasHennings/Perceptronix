@@ -24,7 +24,7 @@ public class UserInterface extends JPanel
     private JTextField textField8;
     private JButton trainAIUsingListButton;
 
-    // this main() is called from Main.main
+    // this main() is called from Perceptronix.main
     public static void main()
     {
         JFrame frame = new JFrame("Perceptronix");

@@ -7,12 +7,12 @@ import java.util.ArrayList;
  * Created by aend on 11.12.16.
  * This class opens a .txt file and returns an ArrayList of Github repository URLS and their corresponding category
  */
-public class FileReader
+public class FileSysBridge
 {
 
 
 
-    public static ArrayList<String> getAllStrings(String filename)
+    public static ArrayList<String> getAllStrings(DownloadListener downloadListener, String filename)
     {
         ArrayList<String> allLines = new ArrayList<String>();
 
