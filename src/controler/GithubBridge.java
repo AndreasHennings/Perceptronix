@@ -7,7 +7,7 @@ public class GithubBridge
 	public GithubBridge(DownloadListener downloadListener)
 	{
 		this.downloadListener = downloadListener;
-		downloadListener.onDownloadFinished();
+		downloadListener.onDownloadFinished(null);
 	}
 	
 	public String[] getAllKeywords(String url)

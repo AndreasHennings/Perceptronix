@@ -15,6 +15,7 @@ public class FileSysBridge
     public static ArrayList<String> getAllStrings(DownloadListener downloadListener, String filename)
     {
         ArrayList<String> allLines = new ArrayList<String>();
+        /*
 
         try
         {
@@ -35,6 +36,10 @@ public class FileSysBridge
         {
             e.printStackTrace();
         }
-        return allLines;
+
+
+       downloadListener.onDownloadFinished(allLines);
+       */
+       return null;
     }
 }
