@@ -14,15 +14,10 @@ public class UserInterface extends JPanel
 
 {
     private JPanel jPanel;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JTextField textField7;
-    private JTextField textField8;
     private JButton trainAIUsingListButton;
+    private JButton runButton;
+    private JTextField statusReadyTextField;
+    private JProgressBar progressBar1;
 
     // this main() is called from Perceptronix.main
     public static void main()
@@ -45,6 +40,7 @@ public class UserInterface extends JPanel
 
     public void init()
     {
+        /*
         trainAIUsingListButton.addActionListener(new ActionListener()
         {
             @Override
@@ -55,6 +51,7 @@ public class UserInterface extends JPanel
                 int returnVal = fc.showOpenDialog(UserInterface.this);
             }
         });
+        */
 
     }
 

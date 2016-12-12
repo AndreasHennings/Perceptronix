@@ -11,143 +11,384 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="fcce2" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <grid id="78589" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+          <grid row="1" column="4" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipadx="500" ipady="50"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-11926985"/>
+        </properties>
+        <border type="none" title="MAIN BRAIN">
+          <title-color color="-13723003"/>
+        </border>
+        <children>
+          <component id="69e0c" class="javax.swing.JTextField" binding="statusReadyTextField" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-4473925"/>
+              <caretColor color="-15300559"/>
+              <foreground color="-16777216"/>
+              <text value="Status: Ready"/>
+            </properties>
+          </component>
+          <component id="8af3a" class="javax.swing.JProgressBar" binding="progressBar1" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-13723003"/>
+              <value value="66"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="8cd6c" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="6" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipadx="150" ipady="50"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-11926985"/>
+          <minimumSize width="250" height="85"/>
+        </properties>
+        <border type="none" title="CATEGORIZE REPOSITORY">
+          <title-color color="-13723003"/>
+        </border>
+        <children>
+          <component id="74c50" class="javax.swing.JTextField" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-4473925"/>
+              <caretColor color="-15300559"/>
+              <foreground color="-16777216"/>
+              <text value="www.github.com/example"/>
+            </properties>
+          </component>
+          <component id="5236a" class="javax.swing.JButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13723003"/>
+              <text value="Run"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="d1c27" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipady="50"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-11926985"/>
+        </properties>
+        <border type="none" title="HTTP-CONNECTION">
+          <title-color color="-13723003"/>
+        </border>
+        <children>
+          <component id="a7850" class="javax.swing.JTextField" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-4473925"/>
+              <caretColor color="-15300559"/>
+              <foreground color="-16777216"/>
+              <text value="Status: undefined"/>
+            </properties>
+          </component>
+          <component id="3cfb0" class="javax.swing.JButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13723003"/>
+              <text value="GitHub login"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="bf45b" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipadx="150" ipady="50"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-12058657"/>
+          <minimumSize width="250" height="85"/>
+        </properties>
+        <border type="none" title="TRAIN AI USING LIST OF EXAMPLES">
+          <title-color color="-13723003"/>
+        </border>
+        <children>
+          <component id="f5503" class="javax.swing.JTextField" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-4473925"/>
+              <caretColor color="-15300559"/>
+              <disabledTextColor color="-15300559"/>
+              <foreground color="-16777216"/>
+              <text value="defaultList.txt"/>
+            </properties>
+          </component>
+          <component id="87aa" class="javax.swing.JButton" binding="runButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13723003"/>
+              <text value="Run"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="f1a9f" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="8" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipady="50"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-11926985"/>
+        </properties>
+        <border type="none" title="DATABASE">
+          <title-color color="-13723003"/>
+        </border>
+        <children>
+          <component id="8f551" class="javax.swing.JTextField" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-4473925"/>
+              <caretColor color="-15300559"/>
+              <foreground color="-16777216"/>
+              <text value="defaultDB.db"/>
+            </properties>
+          </component>
+          <component id="6f9b6" class="javax.swing.JButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13723003"/>
+              <text value="New"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="5276f" layout-manager="GridLayoutManager" row-count="1" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipady="100"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-11926985"/>
+        </properties>
+        <border type="none" title="PERCEPTRONIC MATRIX">
+          <title-color color="-13723003"/>
+        </border>
+        <children>
+          <grid id="8d06c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-11926985"/>
+            </properties>
+            <border type="none" title="DEV">
+              <title-color color="-13723003"/>
+            </border>
+            <children>
+              <component id="184a7" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13723003"/>
+                  <text value="66 %"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="50" height="30"/>
-        </properties>
-      </component>
-      <component id="343e1" class="javax.swing.JTextField" binding="textField2" default-binding="true">
-        <constraints>
-          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+          <grid id="1cc7a" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-11926985"/>
+            </properties>
+            <border type="none" title="DEV">
+              <title-color color="-13723003"/>
+            </border>
+            <children>
+              <component id="f1ec0" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13723003"/>
+                  <text value="66 %"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="50" height="30"/>
-        </properties>
-      </component>
-      <component id="8599b" class="javax.swing.JTextField" binding="textField3" default-binding="true">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+          <grid id="69ec" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-11926985"/>
+            </properties>
+            <border type="none" title="DEV">
+              <title-color color="-13723003"/>
+            </border>
+            <children>
+              <component id="6ad3f" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13723003"/>
+                  <text value="66 %"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="50" height="30"/>
-        </properties>
-      </component>
-      <component id="e7c2c" class="javax.swing.JTextField" binding="textField4" default-binding="true">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+          <grid id="8f963" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-11926985"/>
+            </properties>
+            <border type="none" title="DEV">
+              <title-color color="-13723003"/>
+            </border>
+            <children>
+              <component id="4c50e" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13723003"/>
+                  <text value="66 %"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="50" height="30"/>
-        </properties>
-      </component>
-      <component id="a219c" class="javax.swing.JTextField" binding="textField5" default-binding="true">
-        <constraints>
-          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+          <grid id="72f85" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-11926985"/>
+            </properties>
+            <border type="none" title="DEV">
+              <title-color color="-13723003"/>
+            </border>
+            <children>
+              <component id="9f737" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13723003"/>
+                  <text value="66 %"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="50" height="30"/>
-        </properties>
-      </component>
-      <component id="9c6cf" class="javax.swing.JTextField" binding="textField6" default-binding="true">
-        <constraints>
-          <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+          <grid id="98a1c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-11926985"/>
+            </properties>
+            <border type="none" title="DEV">
+              <title-color color="-13723003"/>
+            </border>
+            <children>
+              <component id="86c2e" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13723003"/>
+                  <text value="66 %"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="50" height="30"/>
-        </properties>
-      </component>
-      <component id="60259" class="javax.swing.JTextField" binding="textField7" default-binding="true">
-        <constraints>
-          <grid row="2" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+          <grid id="4368c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-11926985"/>
+            </properties>
+            <border type="none" title="DEV">
+              <title-color color="-13723003"/>
+            </border>
+            <children>
+              <component id="54c27" class="javax.swing.JButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13723003"/>
+                  <text value="66 %"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="50" height="30"/>
-        </properties>
-      </component>
-      <component id="76ea7" class="javax.swing.JTextField" binding="textField8" default-binding="true">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="14" height="100"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="8342b" class="javax.swing.JTextField" default-binding="true">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-14988775"/>
-          <horizontalAlignment value="0"/>
-          <preferredSize width="14" height="100"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="63a10" class="javax.swing.JButton" binding="trainAIUsingListButton" default-binding="true">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="Train AI using list of urls"/>
-        </properties>
-      </component>
-      <component id="c692d" class="javax.swing.JButton" default-binding="true">
-        <constraints>
-          <grid row="0" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="Categorize Github Repo"/>
-        </properties>
-      </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
