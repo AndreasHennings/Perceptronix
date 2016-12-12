@@ -19,11 +19,10 @@ public class FileSysBridge
 
         try
         {
-            BufferedReader br = new BufferedReader(new java.io.FileReader("/home/aend/workspace/Perceptronix/src/config/defaultList.txt"));
+            BufferedReader br = new BufferedReader(new java.io.FileReader("./resources/defaultList.txt"));
             while(true)
             {
                 String line = br.readLine();
-                System.out.println(line);
                 if (line==null)
                 {
                     br.close();

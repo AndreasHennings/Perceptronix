@@ -34,6 +34,6 @@ public class Perceptronix implements DownloadListener
 	@Override
 	public void onDownloadFinished(ArrayList<String> allLines)
 	{
-
+		System.out.println(allLines.toString());
 	}
 }
