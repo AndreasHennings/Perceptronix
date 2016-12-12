@@ -12,17 +12,18 @@ public class FileSysBridge
 
 
 
-    public static ArrayList<String> getAllStrings(DownloadListener downloadListener, String filename)
+    public static ArrayList<String> getAllStrings(DownloadListener downloadListener)
     {
         ArrayList<String> allLines = new ArrayList<String>();
-        /*
+
 
         try
         {
-            BufferedReader br = new BufferedReader(new java.io.FileReader("Hallo.txt"));
+            BufferedReader br = new BufferedReader(new java.io.FileReader("/home/aend/workspace/Perceptronix/src/config/defaultList.txt"));
             while(true)
             {
                 String line = br.readLine();
+                System.out.println(line);
                 if (line==null)
                 {
                     br.close();
@@ -39,7 +40,7 @@ public class FileSysBridge
 
 
        downloadListener.onDownloadFinished(allLines);
-       */
+
        return null;
     }
 }
