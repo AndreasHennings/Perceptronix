@@ -38,7 +38,7 @@ public class FileSysBridge
         }
 
 
-       downloadListener.onDownloadFinished(allLines);
+       //downloadListener.onDownloadFinished(allLines);
 
        return null;
     }

@@ -7,5 +7,5 @@ import java.util.ArrayList;
  */
 public interface DownloadListener
 {
-    public void onDownloadFinished(ArrayList<String> allLines);
+    public void onDownloadFinished(String s);
 }

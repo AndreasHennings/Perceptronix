@@ -1,5 +1,6 @@
 import controler.DownloadListener;
 import controler.FileSysBridge;
+import controler.GithubBridge;
 import model.Brain;
 import config.Config;
 import view.UserInterface;
@@ -24,16 +25,17 @@ public class Perceptronix implements DownloadListener
 
 	public void start()
 	{
-		UserInterface.main();
-		ArrayList<String> allListItems = FileSysBridge.getAllStrings(this);
+		//UserInterface.main();
+		//FileSysBridge.getAllStrings(this);
+		new GithubBridge(this);
 
-		UserInterface ui = new UserInterface(Config.CATEGORIES);
-		Brain brain = new Brain(Config.CATEGORIES);
+		//UserInterface ui = new UserInterface(Config.CATEGORIES);
+		//Brain brain = new Brain(Config.CATEGORIES);
 	}
 
 	@Override
-	public void onDownloadFinished(ArrayList<String> allLines)
+	public void onDownloadFinished(String s)
 	{
-		System.out.println(allLines.toString());
+		System.out.println(s);
 	}
 }

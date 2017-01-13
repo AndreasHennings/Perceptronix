@@ -16,6 +16,9 @@ public class UserInterface extends JPanel
     private JPanel jPanel;
     private JButton trainAIUsingListButton;
     private JTextArea textArea1;
+    private JPanel c1;
+    private JButton b1;
+    private JPanel pm;
     private JTextField brainStatus;
 
     // this main() is called from Perceptronix.main
@@ -26,6 +29,7 @@ public class UserInterface extends JPanel
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
     }
     public UserInterface()
     {
@@ -39,6 +43,9 @@ public class UserInterface extends JPanel
 
     public void init()
     {
+
+
+
         /*
         for (int i =0; i<40;i++)
         {
