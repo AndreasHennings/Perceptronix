@@ -3,6 +3,7 @@ package controler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONString;
 
 
 import javax.net.ssl.HttpsURLConnection;
@@ -19,59 +20,69 @@ import java.util.jar.Attributes;
 public class GithubBridge
 {
 	DownloadListener downloadListener;
+	ArrayList<String> allKeywords;
 
 	public GithubBridge(DownloadListener downloadListener)
 	{
 		this.downloadListener = downloadListener;
+		allKeywords = new ArrayList<String>();
 		//downloadListener.onDownloadFinished(null);
 
+	}
+
+	private String getJSONfromGITHUB(URL url)
+	{
+		String jsonString = "";
 
 		try
 		{
-			String jsonString = "";
+			//URL url = new URL("https://api.github.com/repos/AndreasHennings/Perceptronix/contents");
 
-			URL url = new URL("https://api.github.com/repos/AndreasHennings/Perceptronix/contents");
 			HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-			System.out.println(connection.getResponseCode());
-			if (connection.getResponseCode()==HttpsURLConnection.HTTP_OK)
+			//System.out.println(connection.getResponseCode());
+			if (connection.getResponseCode() == HttpsURLConnection.HTTP_OK)
 			{
 				InputStream is = connection.getInputStream();
 				BufferedReader br = new BufferedReader(new InputStreamReader(is));
 				String line;
-				while ((line=br.readLine())!=null)
+				while ((line = br.readLine()) != null)
 				{
-					jsonString+=line;
-
+					jsonString += line;
 				}
 				br.close();
 				is.close();
 			}
-
-
-
 			connection.disconnect();
-
-			JSONArray jsonArray = new JSONArray(jsonString);
-			for (int i=0; i<jsonArray.length(); i++)
-			{
-				JSONObject jsonObject = jsonArray.getJSONObject(i);
-				String name = jsonObject.getString("name");
-				System.out.println(name);
-			}
-
-		}
-
-		catch (IOException e)
+		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 
-	}
-	
-	public String[] getAllKeywords(String url)
-	{
-		return null;
+		return jsonString;
 	}
 
+	private void processJSON(String jsonString)
+	{
+		JSONArray jsonArray = new JSONArray(jsonString);
+		for (int i = 0; i < jsonArray.length(); i++)
+		{
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			String name = jsonObject.getString("name");
+			String type = jsonObject.getString("type");
+
+			if (type.equals("file"))
+			{
+				String[] filename = name.split("\\.");
+				allKeywords.add(filename[0]);
+				allKeywords.add("." + filename[1]);
+				//System.out.println(filename[0]+" : "+filename[1]);
+			} else
+			{
+
+			}
+
+			System.out.println(allKeywords);
+		}
+	}
 
 }
