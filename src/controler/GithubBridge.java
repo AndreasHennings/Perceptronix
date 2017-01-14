@@ -21,22 +21,25 @@ public class GithubBridge
 {
 	DownloadListener downloadListener;
 	ArrayList<String> allKeywords;
+	String repoURL;
 
-	public GithubBridge(DownloadListener downloadListener)
+	public GithubBridge(DownloadListener downloadListener, String repoURL)
 	{
 		this.downloadListener = downloadListener;
+		this.repoURL = repoURL;
+
 		allKeywords = new ArrayList<String>();
 		//downloadListener.onDownloadFinished(null);
 
 	}
 
-	private String getJSONfromGITHUB(URL url)
+	private String getJSONfromGITHUB(String urlAsString)
 	{
 		String jsonString = "";
 
 		try
 		{
-			//URL url = new URL("https://api.github.com/repos/AndreasHennings/Perceptronix/contents");
+			URL url = new URL(urlAsString);
 
 			HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 			//System.out.println(connection.getResponseCode());
@@ -73,12 +76,18 @@ public class GithubBridge
 			if (type.equals("file"))
 			{
 				String[] filename = name.split("\\.");
-				allKeywords.add(filename[0]);
-				allKeywords.add("." + filename[1]);
+				allKeywords.add("fln_"+filename[0]);
+				allKeywords.add("flt_" + filename[1]);
 				//System.out.println(filename[0]+" : "+filename[1]);
-			} else
-			{
+			}
 
+			else // type equals "dir"
+			{
+				allKeywords.add("dir_"+name);
+				String dirUrl = repoURL+"/git/trees/"+jsonObject.getString("sha")+"?recursive=1";
+
+				String newjsonString = getJSONfromGITHUB(dirUrl);
+				processJSON(newjsonString);
 			}
 
 			System.out.println(allKeywords);
