@@ -1,9 +1,7 @@
 package controler;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONString;
 
 
 import javax.net.ssl.HttpsURLConnection;
@@ -13,32 +11,33 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.jar.Attributes;
 
 
 public class GithubBridge
 {
 	DownloadListener downloadListener;
 	ArrayList<String> allKeywords;
-	String repoURL;
+	String repo;
 
 	public GithubBridge(DownloadListener downloadListener)
 	{
 		this.downloadListener = downloadListener;
-		this.repoURL = repoURL;
-
 		allKeywords = new ArrayList<String>();
 		//downloadListener.onDownloadFinished(null);
-		repoURL = "https://api.github.com/repos/WebpageFX/emoji­cheat­sheet.com/contents";
-		String jStr = getJSONfromGITHUB(repoURL);
-		processJSON(jStr);
+
+		repo = "https://api.github.com/repos/AndreasHennings/Perceptronix";
+		String s =getJSONfromGITHUB(repo +"/contents");
+
+		processJSON(s);
+		System.out.println(allKeywords);
+
+
 	}
 
 	private String getJSONfromGITHUB(String urlAsString)
 	{
 		String jsonString = "";
-
+		
 		try
 		{
 			URL url = new URL(urlAsString);
@@ -78,20 +77,23 @@ public class GithubBridge
 			if (type.equals("file"))
 			{
 				String[] filename = name.split("\\.");
-				allKeywords.add("fln_"+filename[0]);
-				allKeywords.add("flt_" + filename[1]);
+				allKeywords.add(filename[0]);
+				allKeywords.add("." + filename[1]);
 				//System.out.println(filename[0]+" : "+filename[1]);
 			}
 
 			else // type equals "dir"
 			{
-				allKeywords.add("dir_"+name);
-				String dirUrl = repoURL+"/git/trees/"+jsonObject.getString("sha")+"?recursive=1";
-
-				String newjsonString = getJSONfromGITHUB(dirUrl);
-				processJSON(newjsonString);
+				try
+				{
+					String dirURL = "" + repo + "/git/trees/" + jsonObject.getString("sha") + "?recursive=1";
+					System.out.println(getJSONfromGITHUB(dirURL));
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
-		System.out.println(allKeywords);
 	}
 }
