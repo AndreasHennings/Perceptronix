@@ -74,15 +74,16 @@ public class GithubBridge
 			String name = jsonObject.getString("name");
 			String type = jsonObject.getString("type");
 
-			if (type.equals("file"))
+			if (type.equals("file") || type.equals("blob"))
 			{
+				if (name==null) {name=jsonObject.getString("path");}
 				String[] filename = name.split("\\.");
 				allKeywords.add(filename[0]);
 				allKeywords.add("." + filename[1]);
-				//System.out.println(filename[0]+" : "+filename[1]);
+				System.out.println(filename[0]+" : "+filename[1]);
 			}
 
-			else // type equals "dir"
+			if (type.equals("dir"))
 			{
 				try
 				{
