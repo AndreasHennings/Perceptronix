@@ -74,26 +74,32 @@ public class GithubBridge
 			String name = jsonObject.getString("name");
 			String type = jsonObject.getString("type");
 
+
+			if (type.equals("dir") || type.equals("tree"))
+			{
+				allKeywords.add("DIRECTORY_"+name);
+				if (type.equals("tree"))
+				{
+					try
+					{
+						String dirURL = "" + repo + "/git/trees/" + jsonObject.getString("sha") + "?recursive=1";
+						processJSON(getJSONfromGITHUB(dirURL));
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+
 			if (type.equals("file") || type.equals("blob"))
 			{
 				if (name==null) {name=jsonObject.getString("path");}
+				allKeywords.add("NAME_"+name);
 				String[] filename = name.split("\\.");
-				allKeywords.add(filename[0]);
-				allKeywords.add("." + filename[1]);
+				allKeywords.add("FILENAME_"+filename[0]);
+				allKeywords.add("FILETYPE_" + filename[1]);
 				System.out.println(filename[0]+" : "+filename[1]);
-			}
-
-			if (type.equals("dir"))
-			{
-				try
-				{
-					String dirURL = "" + repo + "/git/trees/" + jsonObject.getString("sha") + "?recursive=1";
-					System.out.println(getJSONfromGITHUB(dirURL));
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
 			}
 		}
 	}
