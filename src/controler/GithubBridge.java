@@ -28,9 +28,9 @@ public class GithubBridge
 
 		try
 		{
-			String jsonString = "[";
+			String jsonString = "";
 
-			URL url = new URL("https://api.github.com/repos/AndreasHennings/Perceptronix");
+			URL url = new URL("https://api.github.com/repos/AndreasHennings/Perceptronix/contents");
 			HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 			System.out.println(connection.getResponseCode());
 			if (connection.getResponseCode()==HttpsURLConnection.HTTP_OK)
@@ -50,11 +50,14 @@ public class GithubBridge
 
 
 			connection.disconnect();
-			jsonString+="]";
+
 			JSONArray jsonArray = new JSONArray(jsonString);
-			JSONObject jsonObject = jsonArray.getJSONObject(0);
-			String name = jsonObject.getString("name");
-			System.out.println(name);
+			for (int i=0; i<jsonArray.length(); i++)
+			{
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
+				String name = jsonObject.getString("name");
+				System.out.println(name);
+			}
 
 		}
 
