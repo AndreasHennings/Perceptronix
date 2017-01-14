@@ -23,14 +23,16 @@ public class GithubBridge
 	ArrayList<String> allKeywords;
 	String repoURL;
 
-	public GithubBridge(DownloadListener downloadListener, String repoURL)
+	public GithubBridge(DownloadListener downloadListener)
 	{
 		this.downloadListener = downloadListener;
 		this.repoURL = repoURL;
 
 		allKeywords = new ArrayList<String>();
 		//downloadListener.onDownloadFinished(null);
-
+		repoURL = "https://api.github.com/repos/WebpageFX/emoji­cheat­sheet.com/contents";
+		String jStr = getJSONfromGITHUB(repoURL);
+		processJSON(jStr);
 	}
 
 	private String getJSONfromGITHUB(String urlAsString)
@@ -89,9 +91,7 @@ public class GithubBridge
 				String newjsonString = getJSONfromGITHUB(dirUrl);
 				processJSON(newjsonString);
 			}
-
-			System.out.println(allKeywords);
 		}
+		System.out.println(allKeywords);
 	}
-
 }
