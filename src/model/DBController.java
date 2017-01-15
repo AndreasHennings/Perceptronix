@@ -1,26 +1,6 @@
 package model;
 
 import java.sql.*;
-/*
-
-public class DatabaseAdapter
-{
-    public static void main(String args[])
-    {
-        Connection c = null;
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-        } catch (Exception e)
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-        System.out.println("Opened database successfully");
-    }
-}
-
-*/
 
 
 public class DBController
@@ -28,9 +8,10 @@ public class DBController
 
     private static final DBController dbcontroller = new DBController();
     private static Connection connection;
-    private static final String DB_PATH = System.getProperty("user.home") + "/" + "testdb.db";
+    private String tablename = "table";
+    //private static final String DB_PATH = System.getProperty("user.home") + "/" + "testdb.db";
 
-    static
+    static // load database driver
     {
         try
         {
@@ -44,13 +25,18 @@ public class DBController
         }
     }
 
-    private DBController()
-    {
-    }
+    private DBController() {}
 
     public static DBController getInstance()
     {
         return dbcontroller;
+    }
+
+    public static void main()
+    {
+        DBController dbc = DBController.getInstance();
+        dbc.initDBConnection();
+        //dbc.handleDB();
     }
 
     private void initDBConnection()
@@ -62,7 +48,8 @@ public class DBController
                 return;
             }
             System.out.println("Creating Connection to Database...");
-            connection = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+            String path = System.getProperty("user.home") + "/" + "testdb.db";
+            connection = DriverManager.getConnection("jdbc:sqlite:" + path);
             if (!connection.isClosed())
             {
                 System.out.println("...Connection established");
@@ -94,9 +81,27 @@ public class DBController
         });
     }
 
-    public void getDataset()
+    public void updateEntry(String keyword, String cat)
     {
+        try
+        {
+            //Statement statement = connection.createStatement();
+            try
+            {
+                System.out.println("UPDATE "+tablename+" SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
+               // statement.executeUpdate("UPDATE "+tablename+" SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
+            }
 
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        catch (Exception e)
+        {
+
+        }
     }
 
     private void handleDB()
@@ -104,8 +109,8 @@ public class DBController
         try
         {
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate("DROP TABLE IF EXISTS books;");
-            stmt.executeUpdate("CREATE TABLE books (author, title, publication, pages, price);");
+            //stmt.executeUpdate("DROP TABLE IF EXISTS books;");
+            //stmt.executeUpdate("CREATE TABLE table (author, title, publication, pages, price);");
             stmt.execute("INSERT INTO books (author, title, publication, pages, price) VALUES ('Paulchen Paule', 'Paul der Penner', '2001-05-06', '1234', '5.67')");
 
             PreparedStatement ps = connection
@@ -147,10 +152,5 @@ public class DBController
         }
     }
 
-    public static void main()
-    {
-        DBController dbc = DBController.getInstance();
-        dbc.initDBConnection();
-        dbc.handleDB();
-    }
+
 }
