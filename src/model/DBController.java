@@ -36,7 +36,7 @@ public class DBController
     {
         DBController dbc = DBController.getInstance();
         dbc.initDBConnection();
-        //dbc.handleDB();
+        dbc.createTable();
     }
 
     private void initDBConnection()
@@ -81,26 +81,69 @@ public class DBController
         });
     }
 
+    private void createTable()
+    {
+
+        try
+        {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE IF EXISTS mytable");
+            statement.executeUpdate("CREATE TABLE mytable (" +
+                    "keyword, " +
+                    "correlation, " +
+                    "c1, " +
+                    "c2, " +
+                    "c3, " +
+                    "c4, " +
+                    "c5, " +
+                    "c6, " +
+                    "c7);");
+
+            //connection.close();
+
+        }
+
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
     public void updateEntry(String keyword, String cat)
     {
         try
         {
-            //Statement statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             try
             {
-                System.out.println("UPDATE "+tablename+" SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
-               // statement.executeUpdate("UPDATE "+tablename+" SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
+                //System.out.println("UPDATE "+tablename+" SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
+                statement.executeUpdate("UPDATE mytable SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
             }
 
             catch (Exception e)
             {
+                PreparedStatement ps = connection
+                    .prepareStatement("INSERT INTO mytable VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+
+                ps.setString(1, keyword);
+                ps.setDouble(2, 0.0);
+                for (int i = 3; i<10; i++)
+                {
+                    ps.setInt(i, 0);
+                }
+
+                ps.addBatch();
+                connection.setAutoCommit(false);
+                ps.executeBatch();
+                connection.setAutoCommit(true);
 
             }
         }
 
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
     }
 
@@ -109,10 +152,10 @@ public class DBController
         try
         {
             Statement stmt = connection.createStatement();
-            //stmt.executeUpdate("DROP TABLE IF EXISTS books;");
-            //stmt.executeUpdate("CREATE TABLE table (author, title, publication, pages, price);");
-            stmt.execute("INSERT INTO books (author, title, publication, pages, price) VALUES ('Paulchen Paule', 'Paul der Penner', '2001-05-06', '1234', '5.67')");
-
+            stmt.executeUpdate("DROP TABLE IF EXISTS books;");
+            stmt.executeUpdate("CREATE TABLE books (author, title, publication, pages, price);");
+            //stmt.execute("INSERT INTO books (author, title, publication, pages, price) VALUES ('Paulchen Paule', 'Paul der Penner', '2001-05-06', '1234', '5.67')");
+            /*
             PreparedStatement ps = connection
                     .prepareStatement("INSERT INTO books VALUES (?, ?, ?, ?, ?);");
 
@@ -143,7 +186,8 @@ public class DBController
                 System.out.println("Seiten = " + rs.getInt("pages"));
                 System.out.println("Preis = " + rs.getDouble("price"));
             }
-            rs.close();
+            */
+            //rs.close();
             connection.close();
         } catch (SQLException e)
         {
