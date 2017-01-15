@@ -94,6 +94,11 @@ public class DBController
         });
     }
 
+    public void getDataset()
+    {
+
+    }
+
     private void handleDB()
     {
         try
@@ -129,8 +134,7 @@ public class DBController
             {
                 System.out.println("Autor = " + rs.getString("author"));
                 System.out.println("Titel = " + rs.getString("title"));
-                System.out.println("Erscheinungsdatum = "
-                        + rs.getDate("publication"));
+                //System.out.println("Erscheinungsdatum = "+ rs.getDate("publication"));
                 System.out.println("Seiten = " + rs.getInt("pages"));
                 System.out.println("Preis = " + rs.getDouble("price"));
             }
