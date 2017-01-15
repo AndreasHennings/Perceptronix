@@ -98,9 +98,7 @@ public class DBController
                     "c5, " +
                     "c6, " +
                     "c7);");
-
-            //connection.close();
-
+            System.out.println("table created");
         }
 
         catch (Exception e)
@@ -117,31 +115,49 @@ public class DBController
             Statement statement = connection.createStatement();
             try
             {
-                //System.out.println("UPDATE "+tablename+" SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
                 statement.executeUpdate("UPDATE mytable SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
             }
 
             catch (Exception e)
             {
-                PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO mytable VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                // statement.executeUpdate("INSERT INTO mytable (keyword, correlation, c1,c2,c3,c4,c5,c6,c7) VALUES (keyword, 0.0, 0, 0, 0, 0, 0, 0, 0);");
+
+
+                PreparedStatement ps = connection.prepareStatement("INSERT INTO mytable VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
                 ps.setString(1, keyword);
                 ps.setDouble(2, 0.0);
-                for (int i = 3; i<10; i++)
+                for (int i = 3; i < 10; i++)
                 {
                     ps.setInt(i, 0);
                 }
 
-                ps.addBatch();
-                connection.setAutoCommit(false);
-                ps.executeBatch();
-                connection.setAutoCommit(true);
-
+                ps.execute();
             }
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
         }
 
-        catch (Exception e)
+    }
+
+    public void getData()
+    {
+        try
+        {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * from mytable");
+            while (rs.next())
+            {
+                String keyword = rs.getString("keyword");
+                System.out.println(keyword);
+
+            }
+
+        }
+
+        catch (SQLException e)
         {
             e.printStackTrace();
         }

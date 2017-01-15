@@ -30,7 +30,8 @@ public class Perceptronix implements DownloadListener
 		//new GithubBridge(this);
 		DBController d= DBController.getInstance();
 		d.main();
-		d.updateEntry("word", "dev");
+		d.updateEntry("word", "keyword");
+		d.getData();
 
 
 
