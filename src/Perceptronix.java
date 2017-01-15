@@ -1,7 +1,7 @@
 import controler.DownloadListener;
 import controler.FileSysBridge;
 import controler.GithubBridge;
-import model.Brain;
+import model.DBController;
 import config.Config;
 import view.UserInterface;
 
@@ -27,7 +27,10 @@ public class Perceptronix implements DownloadListener
 	{
 		//UserInterface.main();
 		//FileSysBridge.getAllStrings(this);
-		new GithubBridge(this);
+		//new GithubBridge(this);
+		DBController d= DBController.getInstance();
+		d.main();
+
 
 		//UserInterface ui = new UserInterface(Config.CATEGORIES);
 		//Brain brain = new Brain(Config.CATEGORIES);
