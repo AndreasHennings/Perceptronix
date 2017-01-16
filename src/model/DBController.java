@@ -142,18 +142,21 @@ public class DBController
 
     }
 
-    public void getData()
+    public ResultSet getData()
     {
+        ResultSet rs = null;
         try
         {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * from mytable");
+            rs = statement.executeQuery("SELECT * from mytable");
+            /*
             while (rs.next())
             {
                 String keyword = rs.getString("keyword");
                 System.out.println(keyword);
 
             }
+            */
 
         }
 
@@ -161,6 +164,8 @@ public class DBController
         {
             e.printStackTrace();
         }
+
+        return rs;
     }
 
     private void handleDB()

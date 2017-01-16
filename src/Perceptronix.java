@@ -5,6 +5,7 @@ import model.DBController;
 import config.Config;
 import view.UserInterface;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Perceptronix implements DownloadListener
@@ -31,7 +32,7 @@ public class Perceptronix implements DownloadListener
 		DBController d= DBController.getInstance();
 		d.main();
 		d.updateEntry("word", "keyword");
-		d.getData();
+		ResultSet rs = d.getData();
 
 
 
