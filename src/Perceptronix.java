@@ -27,7 +27,11 @@ public class Perceptronix implements DownloadListener
 		DBController d= DBController.getInstance();
 		d.main();
 		d.updateEntry("neu", "c1");
-		d.updateEntry("neu", "c1");
+		d.updateEntry("nasdeu", "c1");
+		d.updateEntry("neu", "c2");
+		d.updateEntry("neasu", "c1");
+		d.updateEntry("neu", "c2");
+		d.updateEntry("neau", "c1");
 		d.updateEntry("neu", "c1");
 		d.updateEntry("neu", "c1");
 		d.getData();
