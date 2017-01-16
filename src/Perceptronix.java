@@ -1,12 +1,7 @@
-import controler.DownloadListener;
-import controler.FileSysBridge;
-import controler.GithubBridge;
-import model.DBController;
-import config.Config;
-import view.UserInterface;
+import BUS.DownloadListener;
+import MEM.DBController;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 public class Perceptronix implements DownloadListener
 {

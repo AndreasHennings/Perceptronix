@@ -1,9 +1,6 @@
-package view;
+package IO;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by aend on 02.12.16.

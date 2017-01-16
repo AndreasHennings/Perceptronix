@@ -18,7 +18,7 @@ https://github.com/MostlyAdequate/mostly-adequate-guide
 https://github.com/AllThingsSmitty/jquery-tips-everyone-should-know
 DOCS
 https://github.com/CMSgov/HealthCare.gov-Styleguide
-https://github.com/github/maturity-model
+https://github.com/github/maturity-ALU
 https://github.com/raspberrypi/documentation
 https://github.com/bundestag/gesetze
 https://github.com/fsr-itse/docs

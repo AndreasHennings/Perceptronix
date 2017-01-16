@@ -1,4 +1,4 @@
-package config;
+package BIOS;
 
 public class Config
 {

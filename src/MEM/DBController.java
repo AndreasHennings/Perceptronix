@@ -1,4 +1,4 @@
-package model;
+package MEM;
 
 import java.sql.*;
 

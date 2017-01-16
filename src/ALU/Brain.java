@@ -1,6 +1,4 @@
-package model;
-
-import model.Perceptron;
+package ALU;
 
 public class Brain
 {

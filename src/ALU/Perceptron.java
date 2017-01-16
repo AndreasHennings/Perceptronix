@@ -1,4 +1,4 @@
-package model;
+package ALU;
 
 public class Perceptron
 {
