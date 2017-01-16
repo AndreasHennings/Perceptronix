@@ -16,16 +16,16 @@ public class DBController
         try
         {
             Class.forName("org.sqlite.JDBC");
-        }
-
-        catch (ClassNotFoundException e)
+        } catch (ClassNotFoundException e)
         {
             System.err.println("Fehler beim Laden des JDBC-Treibers");
             e.printStackTrace();
         }
     }
 
-    private DBController() {}
+    private DBController()
+    {
+    }
 
     public static DBController getInstance()
     {
@@ -54,9 +54,7 @@ public class DBController
             {
                 System.out.println("...Connection established");
             }
-        }
-
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             throw new RuntimeException(e);
         }
@@ -99,9 +97,7 @@ public class DBController
                     "c6, " +
                     "c7);");
             System.out.println("table created");
-        }
-
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -109,30 +105,28 @@ public class DBController
     }
 
 
-
     public void updateEntry(String keyword, String cat) // neu, c1
     {
         try
         {
             Statement statement = connection.createStatement();
-            try
+
+            String s = "UPDATE mytable SET " + cat + " = " + cat + " + 1 WHERE keyword = '" + keyword + "';";
+            //System.out.println(s);
+            int a = statement.executeUpdate(s);
+
+            if (a > 0)
             {
-                String s = "UPDATE mytable SET " +cat+ " = " +cat+ " + 1 WHERE keyword = '" +keyword+ "';";
-                System.out.println(s);
-                int i = statement.executeUpdate(s);
-                System.out.println("value updated "+i);
+                System.out.println("value updated ");
             }
 
-            catch (Exception e)
+            else
             {
-                // statement.executeUpdate("INSERT INTO mytable (keyword, correlation, c1,c2,c3,c4,c5,c6,c7) VALUES (keyword, 0.0, 0, 0, 0, 0, 0, 0, 0);");
-
-
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO mytable VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
                 ps.setString(1, keyword);
                 //System.out.println(keyword);
-                ps.setDouble(2, 0.74);
+                ps.setDouble(2, 0.0);
                 for (int i = 3; i < 10; i++)
                 {
                     ps.setInt(i, 0);
@@ -140,12 +134,12 @@ public class DBController
 
                 ps.execute();
                 System.out.println("entry made");
-                statement.executeUpdate("UPDATE mytable SET "+cat+" = "+cat+" + 1 WHERE keyword = '"+keyword+"';");
+                statement.executeUpdate("UPDATE mytable SET " + cat + " = " + cat + " + 1 WHERE keyword = '" + keyword + "';");
                 System.out.println("value updated2");
-
             }
+        }
 
-        } catch (SQLException e)
+        catch (SQLException e)
         {
             e.printStackTrace();
         }
@@ -155,40 +149,32 @@ public class DBController
     public ResultSet getData()
     {
 
-        System.out.println("hallo");
+
 
         try
         {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * from mytable");
+
+            String entry ="";
             while (rs.next())
             {
 
                 String keyword = rs.getString(1);
+                entry+=keyword+" ";
 
 
                 double c = rs.getDouble(2);
-                int[]nums = new int[7];
-                for (int i =0; i<nums.length; i++)
+                entry+=" "+c;
+                int[] nums = new int[7];
+                for (int i = 0; i < nums.length; i++)
                 {
-                    nums[i]=rs.getInt(i+2);
+                    entry+= " "+rs.getInt(i + 3);
                 }
-
-                System.out.println(keyword);
-
-                System.out.println(c);
-                for (int i : nums)
-                {
-                    System.out.println(i);
-
-                }
-
             }
+            System.out.println(entry);
 
-
-        }
-
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             e.printStackTrace();
         }
