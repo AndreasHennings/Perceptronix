@@ -108,14 +108,19 @@ public class DBController
 
     }
 
-    public void updateEntry(String keyword, String cat)
+
+
+    public void updateEntry(String keyword, String cat) // neu, c1
     {
         try
         {
             Statement statement = connection.createStatement();
             try
             {
-                statement.executeUpdate("UPDATE mytable SET "+cat+" = "+cat+" + 1 WHERE keyword = "+keyword);
+                String s = "UPDATE mytable SET " +cat+ " = " +cat+ " + 1 WHERE keyword = '" +keyword+ "';";
+                System.out.println(s);
+                int i = statement.executeUpdate(s);
+                System.out.println("value updated "+i);
             }
 
             catch (Exception e)
@@ -126,13 +131,18 @@ public class DBController
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO mytable VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
                 ps.setString(1, keyword);
-                ps.setDouble(2, 0.0);
+                //System.out.println(keyword);
+                ps.setDouble(2, 0.74);
                 for (int i = 3; i < 10; i++)
                 {
                     ps.setInt(i, 0);
                 }
 
                 ps.execute();
+                System.out.println("entry made");
+                statement.executeUpdate("UPDATE mytable SET "+cat+" = "+cat+" + 1 WHERE keyword = '"+keyword+"';");
+                System.out.println("value updated2");
+
             }
 
         } catch (SQLException e)
@@ -144,19 +154,37 @@ public class DBController
 
     public ResultSet getData()
     {
-        ResultSet rs = null;
+
+        System.out.println("hallo");
+
         try
         {
             Statement statement = connection.createStatement();
-            rs = statement.executeQuery("SELECT * from mytable");
-            /*
+            ResultSet rs = statement.executeQuery("SELECT * from mytable");
             while (rs.next())
             {
-                String keyword = rs.getString("keyword");
+
+                String keyword = rs.getString(1);
+
+
+                double c = rs.getDouble(2);
+                int[]nums = new int[7];
+                for (int i =0; i<nums.length; i++)
+                {
+                    nums[i]=rs.getInt(i+2);
+                }
+
                 System.out.println(keyword);
 
+                System.out.println(c);
+                for (int i : nums)
+                {
+                    System.out.println(i);
+
+                }
+
             }
-            */
+
 
         }
 
@@ -165,7 +193,7 @@ public class DBController
             e.printStackTrace();
         }
 
-        return rs;
+        return null;
     }
 
     private void handleDB()
