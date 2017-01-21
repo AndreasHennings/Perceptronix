@@ -41,9 +41,9 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	}
 
 	@Override
-	public void onDownloadFinished(String s)
+	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
 	{
-		System.out.println(s);
+		System.out.println();
 	}
 
 	@Override
@@ -74,16 +74,12 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 	private void trainAI(String filename)
 	{
-		ui.setText("Train AI with "+filename);
 		FileSysBridge.getAllStrings(this, this, filename);
 	}
 
 	@Override
 	public void onFileOperationFinished(ArrayList<String> repos)
 	{
-		for (String s : repos)
-		{
-			ui.setText(s);
-		}
+		new GithubBridge(this, this, repos);
 	}
 }

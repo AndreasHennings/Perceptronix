@@ -30,6 +30,7 @@ public class FileSysBridge
                     break;
                 }
                 allLines.add(line);
+                ml.onMessage(line);
             }
         }
 

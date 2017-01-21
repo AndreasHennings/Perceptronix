@@ -19,23 +19,31 @@ public class GithubBridge
 {
 	DownloadListener downloadListener;
 	MessageListener ml;
+
 	ArrayList<String> allKeywords;
+	ArrayList<String> allCategories;
+
 	String repo;
 
-	public GithubBridge(DownloadListener downloadListener, MessageListener ml)
+	public GithubBridge(DownloadListener downloadListener, MessageListener ml, ArrayList<String> repos)
 	{
 		this.ml = ml;
 		this.downloadListener = downloadListener;
+
 		allKeywords = new ArrayList<String>();
-		//downloadListener.onDownloadFinished(null);
+		allCategories = new ArrayList<String>();
 
-		repo = "https://api.github.com/repos/AndreasHennings/Perceptronix";
-		String s =getJSONfromGITHUB(repo +"/contents");
+		for (String repo : repos)
+		{
+			String[] infos = repo.split("\\s");
+			//repo = "https://api.github.com/repos/AndreasHennings/Perceptronix";
+			String s = getJSONfromGITHUB(infos[0] + "/contents");
+			processJSON(s);
+			allCategories.add(infos[1]);
+			//System.out.println(allKeywords);
+		}
 
-		processJSON(s);
-		System.out.println(allKeywords);
-
-
+		downloadListener.onDownloadFinished(allKeywords, allCategories);
 	}
 
 	private String getJSONfromGITHUB(String urlAsString)
@@ -77,7 +85,6 @@ public class GithubBridge
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 			String name = jsonObject.getString("name");
 			String type = jsonObject.getString("type");
-
 
 			if (type.equals("dir") || type.equals("tree"))
 			{
