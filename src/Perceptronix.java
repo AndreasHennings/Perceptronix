@@ -1,7 +1,9 @@
 import BIOS.Config;
 import BUS.ButtonListener;
 import BUS.DownloadListener;
+import BUS.FileOperationListener;
 import BUS.MessageListener;
+import IO.FileSysBridge;
 import IO.GithubBridge;
 import IO.UserInterface;
 import MEM.DBController;
@@ -9,8 +11,9 @@ import MEM.DBController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
-public class Perceptronix implements DownloadListener, MessageListener, ButtonListener
+public class Perceptronix implements DownloadListener, MessageListener, ButtonListener, FileOperationListener
 {
 	/**
 	 * @param args
@@ -32,14 +35,8 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 		//new GithubBridge(this, this);
 		//DBController d= DBController.getInstance();
 		//d.main(this);
-
-
 		//ResultSet rs = d.getData();
 
-
-
-
-		//
 		//Brain brain = new Brain(Config.CATEGORIES);
 	}
 
@@ -66,6 +63,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 			case "categorize":
 				categorize(filename);
 				break;
+			default: break;
 		}
 	}
 
@@ -76,6 +74,16 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 	private void trainAI(String filename)
 	{
-		ui.setText("trainAI: "+filename);
+		ui.setText("Train AI with "+filename);
+		FileSysBridge.getAllStrings(this, this, filename);
+	}
+
+	@Override
+	public void onFileOperationFinished(ArrayList<String> repos)
+	{
+		for (String s : repos)
+		{
+			ui.setText(s);
+		}
 	}
 }

@@ -13,13 +13,13 @@ import java.util.ArrayList;
  */
 public class FileSysBridge
 {
-    public static ArrayList<String> getAllStrings(FileOperationListener fol, MessageListener ml)
+    public static void getAllStrings(FileOperationListener fol, MessageListener ml, String filename)
     {
         ArrayList<String> allLines = new ArrayList<String>();
 
         try
         {
-            BufferedReader br = new BufferedReader(new java.io.FileReader("./resources/defaultList.txt"));
+            BufferedReader br = new BufferedReader(new java.io.FileReader("./resources/"+filename));
             ml.onMessage("File sucessfully opened");
             while(true)
             {
@@ -38,9 +38,6 @@ public class FileSysBridge
             ml.onMessage("Error: "+e.getMessage().toString());
         }
 
-
-       //downloadListener.onDownloadFinished(allLines);
-
-       return null;
+        fol.onFileOperationFinished(allLines);
     }
 }

@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class UserInterface extends JPanel
 
 {
-    JFileChooser fc;
+    //JFileChooser fc;
     public ButtonListener bl;
     private JPanel jPanel;
     private JButton trainAIUsingListButton;
@@ -22,7 +22,6 @@ public class UserInterface extends JPanel
     private JTextField trainFilename;
     private JTextArea textArea1;
     private JTextField categorizeFilename;
-    private JTextField brainStatus;
 
     // this main() is called from Perceptronix.main
     public static UserInterface main()
