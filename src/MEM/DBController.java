@@ -8,8 +8,6 @@ public class DBController
 
     private static final DBController dbcontroller = new DBController();
     private static Connection connection;
-    private String tablename = "table";
-    //private static final String DB_PATH = System.getProperty("user.home") + "/" + "testdb.db";
 
     static // load database driver
     {

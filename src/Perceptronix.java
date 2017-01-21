@@ -1,9 +1,10 @@
 import BUS.DownloadListener;
+import BUS.MessageListener;
 import MEM.DBController;
 
 import java.sql.ResultSet;
 
-public class Perceptronix implements DownloadListener
+public class Perceptronix implements DownloadListener, MessageListener
 {
 
 	/**
@@ -26,15 +27,7 @@ public class Perceptronix implements DownloadListener
 		//new GithubBridge(this);
 		DBController d= DBController.getInstance();
 		d.main();
-		d.updateEntry("neu", "c1");
-		d.updateEntry("nasdeu", "c1");
-		d.updateEntry("neu", "c2");
-		d.updateEntry("neasu", "c1");
-		d.updateEntry("neu", "c2");
-		d.updateEntry("neau", "c1");
-		d.updateEntry("neu", "c1");
-		d.updateEntry("neu", "c1");
-		d.getData();
+
 		//ResultSet rs = d.getData();
 
 
@@ -48,5 +41,11 @@ public class Perceptronix implements DownloadListener
 	public void onDownloadFinished(String s)
 	{
 		System.out.println(s);
+	}
+
+	@Override
+	public void onMessage()
+	{
+
 	}
 }
