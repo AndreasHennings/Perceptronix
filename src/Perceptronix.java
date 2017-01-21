@@ -12,29 +12,19 @@ import java.sql.ResultSet;
 
 public class Perceptronix implements DownloadListener, MessageListener, ButtonListener
 {
-
 	/**
 	 * @param args
 	 */
-	
 
-	
 	public static void main(String[] args)
 	{
 		new Perceptronix().start();
 	}
 
-
-
 	public void start()
 	{
 		UserInterface ui = UserInterface.main();
 		ui.init(this);
-		/*
-		UserInterface ui = new UserInterface();
-		ui.init(this);
-		*/
-
 		//FileSysBridge.getAllStrings(this);
 		//new GithubBridge(this, this);
 		//DBController d= DBController.getInstance();
@@ -61,17 +51,6 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	{
 		System.out.println(target+message);
 	}
-
-	/*
-	@Override
-	public void onButtonPressed()
-	{
-		System.out.println("hallo");
-
-	}
-	*/
-
-
 
 	@Override
 	public void onButtonPressed(String which)

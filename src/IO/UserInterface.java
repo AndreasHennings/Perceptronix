@@ -14,15 +14,13 @@ import java.awt.event.ActionListener;
 public class UserInterface extends JPanel
 
 {
+    JFileChooser fc;
     public ButtonListener bl;
     private JPanel jPanel;
     private JButton trainAIUsingListButton;
-    private JTextArea textArea1;
-    private JPanel c1;
-    private JButton b1;
-    private JPanel pm;
     private JButton runAI;
     private JTextField trainFilename;
+    private JTextArea textArea1;
     private JTextField brainStatus;
 
     // this main() is called from Perceptronix.main
@@ -48,10 +46,12 @@ public class UserInterface extends JPanel
 
     public void init(ButtonListener b)
     {
-        bl=b;
+        bl = b;
 
 
-       // runAI.addActionListener(this);
+
+
+        // runAI.addActionListener(this);
 
         /*
         for (int i =0; i<40;i++)
@@ -61,22 +61,21 @@ public class UserInterface extends JPanel
         */
 
 
-
-
         trainAIUsingListButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
                 bl.onButtonPressed("train");
-            }
-                /*
+
+
                 JFileChooser fc;
                 fc = new JFileChooser();
                 int returnVal = fc.showOpenDialog(UserInterface.this);
-                */
+            }
 
         });
+
 
         runAI.addActionListener(new ActionListener()
         {
@@ -89,13 +88,4 @@ public class UserInterface extends JPanel
 
 
     }
-/*
-
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        bl.onButtonPressed();
-
-    }
-    */
 }
