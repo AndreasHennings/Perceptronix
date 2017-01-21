@@ -23,8 +23,6 @@ public class GithubBridge
 	ArrayList<String> allKeywords;
 	ArrayList<String> allCategories;
 
-	String repo;
-
 	public GithubBridge(DownloadListener downloadListener, MessageListener ml, ArrayList<String> repos)
 	{
 		this.ml = ml;
@@ -36,11 +34,10 @@ public class GithubBridge
 		for (String repo : repos)
 		{
 			String[] infos = repo.split("\\s");
-			//repo = "https://api.github.com/repos/AndreasHennings/Perceptronix";
-			String s = getJSONfromGITHUB(infos[0] + "/contents");
-			processJSON(s);
-			allCategories.add(infos[1]);
-			//System.out.println(allKeywords);
+			String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents";
+			ml.onMessage(r);
+			String s = getJSONfromGITHUB(r);
+			processJSON(s, infos);
 		}
 
 		downloadListener.onDownloadFinished(allKeywords, allCategories);
@@ -55,7 +52,7 @@ public class GithubBridge
 			URL url = new URL(urlAsString);
 
 			HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-			//System.out.println(connection.getResponseCode());
+			ml.onMessage(Integer.toString(connection.getResponseCode()));
 			if (connection.getResponseCode() == HttpsURLConnection.HTTP_OK)
 			{
 				InputStream is = connection.getInputStream();
@@ -74,10 +71,11 @@ public class GithubBridge
 			e.printStackTrace();
 		}
 
+		//jsonString+="]";
 		return jsonString;
 	}
 
-	private void processJSON(String jsonString)
+	private void processJSON(String jsonString, String[] infos)
 	{
 		JSONArray jsonArray = new JSONArray(jsonString);
 		for (int i = 0; i < jsonArray.length(); i++)
@@ -89,12 +87,14 @@ public class GithubBridge
 			if (type.equals("dir") || type.equals("tree"))
 			{
 				allKeywords.add("DIRECTORY_"+name);
+				allCategories.add(infos[1]);
+
 				if (type.equals("tree"))
 				{
 					try
 					{
-						String dirURL = "" + repo + "/git/trees/" + jsonObject.getString("sha") + "?recursive=1";
-						processJSON(getJSONfromGITHUB(dirURL));
+						String dirURL = "" + infos[0] + "/git/trees/" + jsonObject.getString("sha") + "?recursive=1";
+						processJSON(getJSONfromGITHUB(dirURL), infos);
 					}
 					catch (Exception e)
 					{
@@ -106,11 +106,23 @@ public class GithubBridge
 			if (type.equals("file") || type.equals("blob"))
 			{
 				if (name==null) {name=jsonObject.getString("path");}
-				allKeywords.add("NAME_"+name);
+
 				String[] filename = name.split("\\.");
-				allKeywords.add("FILENAME_"+filename[0]);
-				allKeywords.add("FILETYPE_" + filename[1]);
-				System.out.println(filename[0]+" : "+filename[1]);
+
+				try
+				{
+					allKeywords.add("FILENAME_" + filename[0]);
+					allCategories.add(infos[1]);
+				}
+				catch (Exception e){}
+
+				try
+				{
+					allKeywords.add("FILETYPE_" + filename[1]);
+					allCategories.add(infos[1]);
+				}
+
+				catch (Exception e){}
 			}
 		}
 	}

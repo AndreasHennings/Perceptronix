@@ -43,7 +43,11 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	@Override
 	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
 	{
-		System.out.println();
+		for (int i =0; i<allKeywords.size(); i++)
+		{
+			onMessage(allKeywords.get(i));
+			onMessage(allCategories.get(i));
+		}
 	}
 
 	@Override
