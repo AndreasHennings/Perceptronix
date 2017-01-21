@@ -77,7 +77,18 @@ public class GithubBridge
 
 	private void processJSON(String jsonString, String[] infos)
 	{
-		JSONArray jsonArray = new JSONArray(jsonString);
+		JSONArray jsonArray=null;
+		try
+		{
+			jsonArray = new JSONArray(jsonString);
+		}
+
+		catch (Exception e)
+		{
+			jsonString="["+jsonString+"]";
+			jsonArray = new JSONArray(jsonString);
+		}
+
 		for (int i = 0; i < jsonArray.length(); i++)
 		{
 			JSONObject jsonObject = jsonArray.getJSONObject(i);

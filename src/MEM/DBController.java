@@ -93,7 +93,7 @@ public class DBController
         try
         {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("DROP TABLE IF EXISTS mytable");
+            //statement.executeUpdate("DROP TABLE IF EXISTS mytable");
             statement.executeUpdate("CREATE TABLE mytable (" +
                     "keyword, " +
                     "correlation, " +

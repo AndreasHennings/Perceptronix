@@ -33,8 +33,8 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 		onMessage("User Interface sucessfully initialized");
 		//FileSysBridge.getAllStrings(this);
 		//new GithubBridge(this, this);
-		//DBController d= DBController.getInstance();
-		//d.main(this);
+		//
+		//
 		//ResultSet rs = d.getData();
 
 		//Brain brain = new Brain(Config.CATEGORIES);
@@ -43,10 +43,14 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	@Override
 	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
 	{
+		DBController d= DBController.getInstance();
+		d.main(this);
+
 		for (int i =0; i<allKeywords.size(); i++)
 		{
 			onMessage(allKeywords.get(i));
 			onMessage(allCategories.get(i));
+			d.updateEntry(allKeywords.get(i), allCategories.get(i));
 		}
 	}
 
