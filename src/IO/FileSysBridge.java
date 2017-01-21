@@ -20,7 +20,7 @@ public class FileSysBridge
         try
         {
             BufferedReader br = new BufferedReader(new java.io.FileReader("./resources/defaultList.txt"));
-            ml.onMessage("file", "file sucessfully opened");
+            ml.onMessage("File sucessfully opened");
             while(true)
             {
                 String line = br.readLine();
@@ -35,7 +35,7 @@ public class FileSysBridge
 
         catch (Exception e)
         {
-            ml.onMessage("file", "Error: "+e.getMessage().toString());
+            ml.onMessage("Error: "+e.getMessage().toString());
         }
 
 

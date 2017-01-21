@@ -104,8 +104,8 @@ public class DBController
                     "c5, " +
                     "c6, " +
                     "c7);");
-            System.out.println("table created");
-            ml.onMessage("DB","TC");
+
+            ml.onMessage("Database table created");
         } catch (Exception e)
         {
             e.printStackTrace();

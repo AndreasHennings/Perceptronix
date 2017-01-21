@@ -16,6 +16,8 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	 * @param args
 	 */
 
+	UserInterface ui;
+
 	public static void main(String[] args)
 	{
 		new Perceptronix().start();
@@ -23,8 +25,9 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 	public void start()
 	{
-		UserInterface ui = UserInterface.main();
+		ui = UserInterface.main();
 		ui.init(this);
+		onMessage("User Interface sucessfully initialized");
 		//FileSysBridge.getAllStrings(this);
 		//new GithubBridge(this, this);
 		//DBController d= DBController.getInstance();
@@ -47,32 +50,32 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	}
 
 	@Override
-	public void onMessage(String target, String message)
+	public void onMessage(String message)
 	{
-		System.out.println(target+message);
+		ui.setText(message);
 	}
 
 	@Override
-	public void onButtonPressed(String which)
+	public void onButtonPressed(String which, String filename)
 	{
 		switch (which)
 		{
 			case "train":
-				trainAI();
+				trainAI(filename);
 				break;
 			case "categorize":
-				categorize();
+				categorize(filename);
 				break;
 		}
 	}
 
-	private void categorize()
+	private void categorize(String filename)
 	{
 		System.out.println("categorize");
 	}
 
-	private void trainAI()
+	private void trainAI(String filename)
 	{
-		System.out.println("trainAI");
+		ui.setText("trainAI: "+filename);
 	}
 }

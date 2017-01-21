@@ -5,5 +5,5 @@ package BUS;
  */
 public interface ButtonListener
 {
-    public void onButtonPressed(String which);
+    public void onButtonPressed(String which, String filename);
 }

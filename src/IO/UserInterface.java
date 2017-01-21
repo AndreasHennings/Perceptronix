@@ -21,6 +21,7 @@ public class UserInterface extends JPanel
     private JButton runAI;
     private JTextField trainFilename;
     private JTextArea textArea1;
+    private JTextField categorizeFilename;
     private JTextField brainStatus;
 
     // this main() is called from Perceptronix.main
@@ -48,30 +49,19 @@ public class UserInterface extends JPanel
     {
         bl = b;
 
-
-
-
-        // runAI.addActionListener(this);
-
-        /*
-        for (int i =0; i<40;i++)
-        {
-            textArea1.append("\nblabla");
-        }
-        */
-
-
         trainAIUsingListButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                bl.onButtonPressed("train");
+                String filename=trainFilename.getText();
+                bl.onButtonPressed("train", filename);
 
-
+                /*
                 JFileChooser fc;
                 fc = new JFileChooser();
                 int returnVal = fc.showOpenDialog(UserInterface.this);
+                */
             }
 
         });
@@ -82,10 +72,17 @@ public class UserInterface extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                bl.onButtonPressed("categorize");
+                String filename = categorizeFilename.getText();
+                bl.onButtonPressed("categorize", filename);
             }
         });
 
 
+    }
+
+    public void setText(String message)
+    {
+        textArea1.append(message);
+        textArea1.append("\n");
     }
 }
