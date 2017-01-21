@@ -1,6 +1,8 @@
 package IO;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by aend on 02.12.16.
@@ -16,6 +18,7 @@ public class UserInterface extends JPanel
     private JPanel c1;
     private JButton b1;
     private JPanel pm;
+    private JButton runAI;
     private JTextField brainStatus;
 
     // this main() is called from Perceptronix.main
@@ -40,7 +43,23 @@ public class UserInterface extends JPanel
 
     public void init()
     {
+        trainAIUsingListButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("b1");
+            }
+        });
 
+        runAI.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("b2");
+            }
+        });
 
 
         /*

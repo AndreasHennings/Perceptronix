@@ -5,5 +5,5 @@ package BUS;
  */
 public interface MessageListener
 {
-    public void onMessage();
+    public void onMessage(String target, String message);
 }

@@ -1,5 +1,8 @@
+import BIOS.Config;
 import BUS.DownloadListener;
 import BUS.MessageListener;
+import IO.GithubBridge;
+import IO.UserInterface;
 import MEM.DBController;
 
 import java.sql.ResultSet;
@@ -22,18 +25,21 @@ public class Perceptronix implements DownloadListener, MessageListener
 
 	public void start()
 	{
-		//UserInterface.main();
+		UserInterface.main();
+		UserInterface ui = new UserInterface(Config.CATEGORIES);
+
 		//FileSysBridge.getAllStrings(this);
-		//new GithubBridge(this);
-		DBController d= DBController.getInstance();
-		d.main();
+		//new GithubBridge(this, this);
+		//DBController d= DBController.getInstance();
+		//d.main(this);
+
 
 		//ResultSet rs = d.getData();
 
 
 
 
-		//UserInterface ui = new UserInterface(Config.CATEGORIES);
+		//
 		//Brain brain = new Brain(Config.CATEGORIES);
 	}
 
@@ -44,8 +50,8 @@ public class Perceptronix implements DownloadListener, MessageListener
 	}
 
 	@Override
-	public void onMessage()
+	public void onMessage(String target, String message)
 	{
-
+		System.out.println(target+message);
 	}
 }

@@ -1,10 +1,14 @@
 package MEM;
 
+import BUS.MessageListener;
+
 import java.sql.*;
 
 
 public class DBController
 {
+
+    MessageListener ml;
 
     private static final DBController dbcontroller = new DBController();
     private static Connection connection;
@@ -30,11 +34,17 @@ public class DBController
         return dbcontroller;
     }
 
-    public static void main()
+    public static void main(MessageListener ml)
     {
         DBController dbc = DBController.getInstance();
+        dbc.setListener(ml);
         dbc.initDBConnection();
         dbc.createTable();
+    }
+
+    public void setListener(MessageListener ml)
+    {
+        this.ml=ml;
     }
 
     private void initDBConnection()
@@ -95,6 +105,7 @@ public class DBController
                     "c6, " +
                     "c7);");
             System.out.println("table created");
+            ml.onMessage("DB","TC");
         } catch (Exception e)
         {
             e.printStackTrace();

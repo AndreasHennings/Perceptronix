@@ -1,6 +1,7 @@
 package IO;
 
 import BUS.DownloadListener;
+import BUS.MessageListener;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,11 +18,13 @@ import java.util.ArrayList;
 public class GithubBridge
 {
 	DownloadListener downloadListener;
+	MessageListener ml;
 	ArrayList<String> allKeywords;
 	String repo;
 
-	public GithubBridge(DownloadListener downloadListener)
+	public GithubBridge(DownloadListener downloadListener, MessageListener ml)
 	{
+		this.ml = ml;
 		this.downloadListener = downloadListener;
 		allKeywords = new ArrayList<String>();
 		//downloadListener.onDownloadFinished(null);

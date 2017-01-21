@@ -61,7 +61,7 @@
           <foreground color="-11926985"/>
           <minimumSize width="100" height="85"/>
         </properties>
-        <border type="none" title="OUTPUT">
+        <border type="none" title="LIST OF REPOS TO BE CATEGORIZED BY AI">
           <title-color color="-13723003"/>
         </border>
         <children>
@@ -75,10 +75,10 @@
               <background color="-4473925"/>
               <caretColor color="-15300559"/>
               <foreground color="-16777216"/>
-              <text value="www.github.com/example"/>
+              <text value="uncategorized.txt"/>
             </properties>
           </component>
-          <component id="5236a" class="javax.swing.JButton" default-binding="true">
+          <component id="5236a" class="javax.swing.JButton" binding="runAI">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="150" height="-1"/>
@@ -412,7 +412,7 @@
           <foreground color="-11926985"/>
           <minimumSize width="100" height="85"/>
         </properties>
-        <border type="none" title="INPUT">
+        <border type="none" title="TRAIN AI USING LIST">
           <title-color color="-13723003"/>
         </border>
         <children>
@@ -429,7 +429,7 @@
               <text value="defaultList.txt"/>
             </properties>
           </component>
-          <component id="ed196" class="javax.swing.JButton" default-binding="true">
+          <component id="ed196" class="javax.swing.JButton" binding="trainAIUsingListButton">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="150" height="-1"/>
