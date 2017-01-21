@@ -68,7 +68,7 @@ public class UserInterface extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                bl.onButtonPressed();
+                bl.onButtonPressed("train");
             }
                 /*
                 JFileChooser fc;
@@ -76,6 +76,15 @@ public class UserInterface extends JPanel
                 int returnVal = fc.showOpenDialog(UserInterface.this);
                 */
 
+        });
+
+        runAI.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                bl.onButtonPressed("categorize");
+            }
         });
 
 

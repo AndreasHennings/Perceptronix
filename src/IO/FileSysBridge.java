@@ -1,6 +1,8 @@
 package IO;
 
 import BUS.DownloadListener;
+import BUS.FileOperationListener;
+import BUS.MessageListener;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
@@ -11,17 +13,14 @@ import java.util.ArrayList;
  */
 public class FileSysBridge
 {
-
-
-
-    public static ArrayList<String> getAllStrings(DownloadListener downloadListener)
+    public static ArrayList<String> getAllStrings(FileOperationListener fol, MessageListener ml)
     {
         ArrayList<String> allLines = new ArrayList<String>();
-
 
         try
         {
             BufferedReader br = new BufferedReader(new java.io.FileReader("./resources/defaultList.txt"));
+            ml.onMessage("file", "file sucessfully opened");
             while(true)
             {
                 String line = br.readLine();
@@ -36,7 +35,7 @@ public class FileSysBridge
 
         catch (Exception e)
         {
-            e.printStackTrace();
+            ml.onMessage("file", "Error: "+e.getMessage().toString());
         }
 
 

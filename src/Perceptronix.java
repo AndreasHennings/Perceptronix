@@ -74,9 +74,26 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 
 	@Override
-	public void onButtonPressed()
+	public void onButtonPressed(String which)
 	{
-		System.out.println("hallo");
+		switch (which)
+		{
+			case "train":
+				trainAI();
+				break;
+			case "categorize":
+				categorize();
+				break;
+		}
+	}
 
+	private void categorize()
+	{
+		System.out.println("categorize");
+	}
+
+	private void trainAI()
+	{
+		System.out.println("trainAI");
 	}
 }
