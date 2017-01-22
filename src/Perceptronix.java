@@ -103,6 +103,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	{
 		onMessage("Download Finished! "+ Integer.toString(allKeywords.size())+" "+Integer.toString(allCategories.size()));
 
+		ArrayList<String> usedRepos = new ArrayList<String>();
 
 		for (int i=0; i<allKeywords.size(); i++)
 		{
@@ -111,7 +112,11 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 			if (cat.startsWith("https"))
 			{
-				new Brain(this, d.getData(), allKeywords, cat, CATEGORIES);
+				if (!usedRepos.contains(cat))
+				{
+					usedRepos.add(cat);
+					new Brain(this, d.getData(), allKeywords, cat, CATEGORIES);
+				}
 			}
 
 			else

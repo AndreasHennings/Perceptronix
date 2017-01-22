@@ -36,6 +36,7 @@ public class Perceptron
 
 				if (keywords.contains(s))
 				{
+					System.out.println("Match found: "+s+" "+repoName+" "+cat);
 					counter++;
 					int num = rs.getInt(cat);
 					int sum = 0;
@@ -48,7 +49,15 @@ public class Perceptron
 				}
 
             }
-			result=result/counter;
+			if (counter>0)
+			{
+				result = result / counter;
+			}
+
+			else
+			{
+				result=0.0;
+			}
 		}
 
 		catch (SQLException e)
