@@ -42,7 +42,7 @@ public class GithubBridge
 				String t =infos[0];
 				infos= new String[2];
 				infos[0]=t;
-				infos[1]="N/A";
+				infos[1]=repo;
 			}
 
 			String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents";

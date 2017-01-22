@@ -10,15 +10,17 @@ public class Perceptron
 {
 	String cat;
 	ArrayList<String> keywords;
+	String repoName;
 	ResultSet rs;
 	PerceptronListener pl;
 	String[] categories;
 	double result;
 	
-	public Perceptron(String cat, String[] categories, ArrayList<String> keywords, ResultSet rs, PerceptronListener pl)
+	public Perceptron(String cat, String[] categories, ArrayList<String> keywords, String repoName, ResultSet rs, PerceptronListener pl)
 	{
 		this.cat=cat;
 		this.keywords=keywords;
+		this.repoName=repoName;
 		this.rs=rs;
 		this.pl=pl;
 		this.categories=categories;
@@ -55,7 +57,7 @@ public class Perceptron
 		}
 
 
-		pl.onCalculationFinished(cat, result);
+		pl.onCalculationFinished(repoName+": "+cat+" ", result);
 	}
 
 }

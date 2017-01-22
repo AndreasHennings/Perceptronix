@@ -104,22 +104,23 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 		onMessage("Download Finished! "+ Integer.toString(allKeywords.size())+" "+Integer.toString(allCategories.size()));
 
 
-
-		if (allCategories.get(0) == "N/A")
+		for (int i=0; i<allKeywords.size(); i++)
 		{
-			new Brain(this, d.getData(), allKeywords, CATEGORIES);
-		}
 
-		else
-		{
-			for (int i = 0; i < allKeywords.size(); i++)
+			String cat=allCategories.get(i);
+
+			if (cat.startsWith("https"))
+			{
+				new Brain(this, d.getData(), allKeywords, cat, CATEGORIES);
+			}
+
+			else
 			{
 				onMessage(allKeywords.get(i));
 				onMessage(allCategories.get(i));
 				d.updateEntry(allKeywords.get(i), allCategories.get(i));
 			}
 		}
-
 	}
 
 	@Override
