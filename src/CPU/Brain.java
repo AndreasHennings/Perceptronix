@@ -33,6 +33,6 @@ public class Brain implements PerceptronListener
 	@Override
 	public void onCalculationFinished(String cat, double result)
 	{
-
+		ml.onMessage(cat+": "+result);
 	}
 }

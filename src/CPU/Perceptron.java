@@ -27,11 +27,14 @@ public class Perceptron
 
 		try
 		{
+			int counter =0;
 			while (rs.next())
             {
 				String s = rs.getString("keyword");
+
 				if (keywords.contains(s))
 				{
+					counter++;
 					int num = rs.getInt(cat);
 					int sum = 0;
 					for (int i = 0; i<categories.length; i++ )
@@ -39,10 +42,11 @@ public class Perceptron
 						sum+= rs.getInt(categories[i]);
 					}
 
-					double d = num/sum;
+					result+= num/sum;
 				}
 
             }
+			result=result/counter;
 		}
 
 		catch (SQLException e)

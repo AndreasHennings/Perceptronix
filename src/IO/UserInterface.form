@@ -78,7 +78,7 @@
               <background color="-4473925"/>
               <caretColor color="-15300559"/>
               <foreground color="-16777216"/>
-              <text value="uncategorized.txt"/>
+              <text value="sourcelist.txt"/>
             </properties>
           </component>
           <component id="5236a" class="javax.swing.JButton" binding="runAI">
