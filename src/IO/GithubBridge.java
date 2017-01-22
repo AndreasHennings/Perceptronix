@@ -24,7 +24,7 @@ public class GithubBridge
 	ArrayList<String> allKeywords;
 	ArrayList<String> allCategories;
 
-	public GithubBridge(DownloadListener downloadListener, MessageListener ml, ArrayList<String> repos)
+	public GithubBridge(DownloadListener downloadListener, MessageListener ml, String repo)
 	{
 		this.ml = ml;
 		this.downloadListener = downloadListener;
@@ -32,24 +32,23 @@ public class GithubBridge
 		allKeywords = new ArrayList<String>();
 		allCategories = new ArrayList<String>();
 
-		for (String repo : repos)
+
+		String[] infos = repo.split("\\s");
+		ml.onMessage(infos.toString());
+
+		if (infos.length<2)
 		{
-			String[] infos = repo.split("\\s");
-			ml.onMessage(infos.toString());
-
-			if (infos.length<2)
-			{
-				String t =infos[0];
-				infos= new String[2];
-				infos[0]=t;
-				infos[1]=repo;
-			}
-
-			String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents";
-			ml.onMessage("Connecting to: "+r);
-			String s = getJSONfromGITHUB(r);
-			processJSON(s, infos);
+			String t =infos[0];
+			infos= new String[2];
+			infos[0]=t;
+			infos[1]=repo;
 		}
+
+		String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents";
+		ml.onMessage("Connecting to: "+r);
+		String s = getJSONfromGITHUB(r);
+		processJSON(s, infos);
+
 
 		downloadListener.onDownloadFinished(allKeywords, allCategories);
 	}

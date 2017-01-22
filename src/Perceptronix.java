@@ -64,38 +64,18 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	{
 		onMessage("Accessing file");
 		FileSysBridge.getAllStrings(this, this, filename);
-		/*
-		ResultSet rs = d.getData();
 
-		try
-		{
-			while (rs.next())
-			{
-				String result="";
-				result+= rs.getString("keyword");
-				for (String s : CATEGORIES)
-				{
-					result+=" "+rs.getInt(s);
-				}
-				onMessage(result);
-			}
-
-
-		} catch (SQLException e)
-		{
-			onMessage("Error reading database: "+e.getMessage().toString());
-		}
-		/*
-		onMessage("Accessing file");
-		FileSysBridge.getAllStrings(this, this, filename);
-		*/
 	}
 
 	@Override
 	public void onFileOperationFinished(ArrayList<String> repos)
 	{
 		onMessage("File read");
-		new GithubBridge(this, this, repos);
+
+		for (String repo : repos)
+		{
+			new GithubBridge(this, this, repo);
+		}
 	}
 
 	@Override
@@ -105,7 +85,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 		ArrayList<String> usedRepos = new ArrayList<String>();
 
-		for (int i=0; i<allKeywords.size(); i++)
+		for (int i=0; i<allCategories.size(); i++)
 		{
 
 			String cat=allCategories.get(i);

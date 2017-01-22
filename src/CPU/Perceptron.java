@@ -24,12 +24,14 @@ public class Perceptron
 		this.rs=rs;
 		this.pl=pl;
 		this.categories=categories;
+		System.out.println("Perceptron: "+cat);
 
 		result=0.0;
 
 		try
 		{
 			int counter =0;
+
 			while (rs.next())
             {
 				String s = rs.getString("keyword");

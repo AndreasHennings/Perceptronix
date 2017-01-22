@@ -23,9 +23,11 @@ public class Brain implements PerceptronListener
 		this.allKeywords =allKeywords;
 		this.repoName=repoName;
 		this.categories=categories;
+		ml.onMessage("New Brain: "+repoName);
 
 		for(String cat : categories)
 		{
+			ml.onMessage("New Perceptron: "+cat+" "+repoName);
 			new Perceptron(cat,categories, allKeywords, repoName, rs, this);
 		}
 
