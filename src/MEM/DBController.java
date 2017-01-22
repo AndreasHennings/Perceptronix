@@ -98,7 +98,7 @@ public class DBController
         try
         {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("DROP TABLE IF EXISTS mytable");
+            //statement.executeUpdate("DROP TABLE IF EXISTS mytable");
             String command = "CREATE TABLE IF NOT EXISTS mytable (keyword, ";
             for (int i =0; i<categories.length-1; i++)
             {
@@ -107,24 +107,15 @@ public class DBController
             }
             command+=categories[categories.length-1];
             command+=");";
-            /*
-                    "correlation, " +
-                    "c1, " +
-                    "c2, " +
-                    "c3, " +
-                    "c4, " +
-                    "c5, " +
-                    "c6, " +
-                    "c7);");
-                    */
+
             statement.executeUpdate(command);
 
-            System.out.println(command);
+            ml.onMessage("Database command: "+command);
         }
 
         catch (Exception e)
         {
-            e.printStackTrace();
+            ml.onMessage("Database error: "+e.getMessage().toString());
         }
 
     }
@@ -135,16 +126,19 @@ public class DBController
         try
         {
             Statement statement = connection.createStatement();
-            String s = "UPDATE mytable SET " + cat + " = " + cat + " + 1 WHERE keyword = '" + keyword + "';";
-            int a =statement.executeUpdate(s);
+            String command = "UPDATE mytable SET " + cat + " = " + cat + " + 1 WHERE keyword = '" + keyword + "';";
+            ml.onMessage("Database command:"+command);
+            int a =statement.executeUpdate(command);
 
             if (a>0)
-            {ml.onMessage("Value updated");}
+            {
+                ml.onMessage("Value updated");
+            }
 
             else
             {
 
-                String command="INSERT INTO mytable VALUES (";
+                command="INSERT INTO mytable VALUES (";
                 command+="'"+keyword+"', ";
                 for (int i=0; i<categories.length-1; i++)
                 {
@@ -163,8 +157,7 @@ public class DBController
 
         catch (SQLException e)
         {
-            e.printStackTrace();
-            ml.onMessage("Database Error");
+            ml.onMessage("Database error: "+e.getMessage().toString());
         }
 
     }
@@ -180,7 +173,7 @@ public class DBController
 
         catch (SQLException e)
         {
-            e.printStackTrace();
+            ml.onMessage("Database error: "+e.getMessage().toString());
         }
 
         return result;

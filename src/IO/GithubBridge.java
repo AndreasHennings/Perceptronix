@@ -36,7 +36,7 @@ public class GithubBridge
 		{
 			String[] infos = repo.split("\\s");
 			String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents"+accessToken;
-			ml.onMessage(r);
+			ml.onMessage("Connecting to: "+r);
 			String s = getJSONfromGITHUB(r);
 			processJSON(s, infos);
 		}
@@ -53,7 +53,7 @@ public class GithubBridge
 			URL url = new URL(urlAsString);
 
 			HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-			ml.onMessage(Integer.toString(connection.getResponseCode()));
+			ml.onMessage("Connection status: "+Integer.toString(connection.getResponseCode()));
 
 			if (connection.getResponseCode() == HttpsURLConnection.HTTP_OK)
 			{
@@ -68,12 +68,13 @@ public class GithubBridge
 				is.close();
 			}
 			connection.disconnect();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
 		}
 
-		//jsonString+="]";
+		catch (IOException e)
+		{
+			ml.onMessage("Connection error: "+e.getMessage().toString());
+		}
+
 		return jsonString;
 	}
 
@@ -107,6 +108,7 @@ public class GithubBridge
 					try
 					{
 						String dirURL = "" + infos[0] + "/git/trees/" + jsonObject.getString("sha") + "?recursive=1"+accessToken;
+						ml.onMessage("Connecting to: "+dirURL);
 						processJSON(getJSONfromGITHUB(dirURL), infos);
 					}
 					catch (Exception e)

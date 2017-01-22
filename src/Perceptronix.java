@@ -20,6 +20,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 	UserInterface ui;
 	public static final String[] CATEGORIES = Config.CATEGORIES;
+	DBController d;
 
 	public static void main(String[] args)
 	{
@@ -28,33 +29,22 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 	public void start()
 	{
-		/*
-		DBController d= DBController.getInstance();
-		d.main(this, CATEGORIES);
-		ResultSet rs = d.getData();
-
-		System.out.println(rs.toString());
-
-		*/
-
 		ui = UserInterface.main();
 		ui.init(this);
+
+		d= DBController.getInstance();
+		d.main(this, CATEGORIES);
+
 		onMessage("User Interface sucessfully initialized");
-
-		//FileSysBridge.getAllStrings(this);
-		//new GithubBridge(this, this);
-		//
-		//
-		//ResultSet rs = d.getData();
-
-		//Brain brain = new Brain(Config.CATEGORIES);
 	}
 
 	@Override
 	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
 	{
-		DBController d= DBController.getInstance();
-		d.main(this, CATEGORIES);
+		onMessage("Download Finished!");
+
+		//DBController d= DBController.getInstance();
+		//d.main(this, CATEGORIES);
 
 		for (int i =0; i<allKeywords.size(); i++)
 		{
@@ -62,26 +52,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 			onMessage(allCategories.get(i));
 			d.updateEntry(allKeywords.get(i), allCategories.get(i));
 		}
-		ResultSet rs = d.getData();
 
-		try
-		{
-			while (rs.next())
-            {
-				String result="";
-                result+= rs.getString("keyword");
-				for (String s : CATEGORIES)
-				{
-					result+=" "+rs.getInt(s);
-				}
-				onMessage(result);
-            }
-
-
-		} catch (SQLException e)
-		{
-			onMessage("Error reading database: "+e.getMessage().toString());
-		}
 
 	}
 
@@ -108,17 +79,42 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 	private void categorize(String filename)
 	{
-		System.out.println("categorize");
+		ResultSet rs = d.getData();
+
+		try
+		{
+			while (rs.next())
+			{
+				String result="";
+				result+= rs.getString("keyword");
+				for (String s : CATEGORIES)
+				{
+					result+=" "+rs.getInt(s);
+				}
+				onMessage(result);
+			}
+
+
+		} catch (SQLException e)
+		{
+			onMessage("Error reading database: "+e.getMessage().toString());
+		}
+		/*
+		onMessage("Accessing file");
+		FileSysBridge.getAllStrings(this, this, filename);
+		*/
 	}
 
 	private void trainAI(String filename)
 	{
+		onMessage("Accessing file");
 		FileSysBridge.getAllStrings(this, this, filename);
 	}
 
 	@Override
 	public void onFileOperationFinished(ArrayList<String> repos)
 	{
+		onMessage("File read");
 		new GithubBridge(this, this, repos);
 	}
 }
