@@ -3,12 +3,14 @@ package MEM;
 import BUS.MessageListener;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class DBController
 {
 
     MessageListener ml;
+    String[]categories;
 
     private static final DBController dbcontroller = new DBController();
     private static Connection connection;
@@ -34,17 +36,18 @@ public class DBController
         return dbcontroller;
     }
 
-    public static void main(MessageListener ml)
+    public static void main(MessageListener ml, String[] categories)
     {
         DBController dbc = DBController.getInstance();
-        dbc.setListener(ml);
+        dbc.setListener(ml, categories);
         dbc.initDBConnection();
         dbc.createTable();
     }
 
-    public void setListener(MessageListener ml)
+    public void setListener(MessageListener ml, String[] categories)
     {
         this.ml=ml;
+        this.categories=categories;
     }
 
     private void initDBConnection()
@@ -96,8 +99,15 @@ public class DBController
         {
             Statement statement = connection.createStatement();
             //statement.executeUpdate("DROP TABLE IF EXISTS mytable");
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS mytable (" +
-                    "keyword, " +
+            String command = "CREATE TABLE IF NOT EXISTS mytable (keyword, ";
+            for (int i =0; i<categories.length-1; i++)
+            {
+                command+=categories[i];
+                command+=", ";
+            }
+            command+=categories[categories.length-1];
+            command+=");";
+            /*
                     "correlation, " +
                     "c1, " +
                     "c2, " +
@@ -106,8 +116,9 @@ public class DBController
                     "c5, " +
                     "c6, " +
                     "c7);");
-
-            System.out.println("Database table created");
+                    */
+            statement.executeUpdate(command);
+            System.out.println("Database table created"+ command);
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -123,7 +134,7 @@ public class DBController
             Statement statement = connection.createStatement();
 
             String s = "UPDATE mytable SET " + cat + " = " + cat + " + 1 WHERE keyword = '" + keyword + "';";
-            //System.out.println(s);
+
             int a = statement.executeUpdate(s);
 
             if (a > 0)
@@ -145,6 +156,7 @@ public class DBController
 
                 ps.execute();
                 System.out.println("entry made");
+
                 statement.executeUpdate("UPDATE mytable SET " + cat + " = " + cat + " + 1 WHERE keyword = '" + keyword + "';");
                 System.out.println("value updated2");
             }

@@ -1,4 +1,4 @@
-package BIOS;
+package ROM;
 
 public class Config
 {

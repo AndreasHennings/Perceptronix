@@ -1,4 +1,3 @@
-import BIOS.Config;
 import BUS.ButtonListener;
 import BUS.DownloadListener;
 import BUS.FileOperationListener;
@@ -7,10 +6,10 @@ import IO.FileSysBridge;
 import IO.GithubBridge;
 import IO.UserInterface;
 import MEM.DBController;
+import ROM.Config;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Perceptronix implements DownloadListener, MessageListener, ButtonListener, FileOperationListener
@@ -20,6 +19,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	 */
 
 	UserInterface ui;
+	public static final String[] CATEGORIES = Config.CATEGORIES;
 
 	public static void main(String[] args)
 	{
@@ -28,14 +28,19 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 	public void start()
 	{
-		DBController d= DBController.getInstance();
-		d.main(this);
-
 		/*
+		DBController d= DBController.getInstance();
+		d.main(this, CATEGORIES);
+		ResultSet rs = d.getData();
+
+		System.out.println(rs.toString());
+
+		*/
+
 		ui = UserInterface.main();
 		ui.init(this);
 		onMessage("User Interface sucessfully initialized");
-		*/
+
 		//FileSysBridge.getAllStrings(this);
 		//new GithubBridge(this, this);
 		//
@@ -49,14 +54,18 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
 	{
 		DBController d= DBController.getInstance();
-		d.main(this);
-
+		d.main(this, CATEGORIES);
+		/*
 		for (int i =0; i<allKeywords.size(); i++)
 		{
 			onMessage(allKeywords.get(i));
 			onMessage(allCategories.get(i));
 			d.updateEntry(allKeywords.get(i), allCategories.get(i));
 		}
+		ResultSet rs = d.getData();
+
+		System.out.println(rs.toString());
+		*/
 	}
 
 	@Override

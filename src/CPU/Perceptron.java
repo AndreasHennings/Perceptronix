@@ -1,4 +1,4 @@
-package ALU;
+package CPU;
 
 public class Perceptron
 {
