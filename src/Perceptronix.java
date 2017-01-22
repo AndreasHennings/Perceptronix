@@ -2,6 +2,7 @@ import BUS.ButtonListener;
 import BUS.DownloadListener;
 import BUS.FileOperationListener;
 import BUS.MessageListener;
+import CPU.Brain;
 import IO.FileSysBridge;
 import IO.GithubBridge;
 import IO.UserInterface;
@@ -39,30 +40,6 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	}
 
 	@Override
-	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
-	{
-		onMessage("Download Finished!");
-
-		//DBController d= DBController.getInstance();
-		//d.main(this, CATEGORIES);
-
-		for (int i =0; i<allKeywords.size(); i++)
-		{
-			onMessage(allKeywords.get(i));
-			onMessage(allCategories.get(i));
-			d.updateEntry(allKeywords.get(i), allCategories.get(i));
-		}
-
-
-	}
-
-	@Override
-	public void onMessage(String message)
-	{
-		ui.setText(message);
-	}
-
-	@Override
 	public void onButtonPressed(String which, String filename)
 	{
 		switch (which)
@@ -77,8 +54,17 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 		}
 	}
 
+	private void trainAI(String filename)
+	{
+		onMessage("Accessing file");
+		FileSysBridge.getAllStrings(this, this, filename);
+	}
+
 	private void categorize(String filename)
 	{
+		onMessage("Accessing file");
+		FileSysBridge.getAllStrings(this, this, filename);
+		/*
 		ResultSet rs = d.getData();
 
 		try
@@ -105,16 +91,45 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 		*/
 	}
 
-	private void trainAI(String filename)
-	{
-		onMessage("Accessing file");
-		FileSysBridge.getAllStrings(this, this, filename);
-	}
-
 	@Override
 	public void onFileOperationFinished(ArrayList<String> repos)
 	{
 		onMessage("File read");
 		new GithubBridge(this, this, repos);
 	}
+
+	@Override
+	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
+	{
+		onMessage("Download Finished!");
+
+		if (allCategories.get(0) == "N/A")
+		{
+			new Brain(this, d.getData(), allKeywords);
+		}
+
+		else
+		{
+			for (int i = 0; i < allKeywords.size(); i++)
+			{
+				onMessage(allKeywords.get(i));
+				onMessage(allCategories.get(i));
+				d.updateEntry(allKeywords.get(i), allCategories.get(i));
+			}
+		}
+	}
+
+	@Override
+	public void onMessage(String message)
+	{
+		ui.setText(message);
+	}
+
+
+
+
+
+
+
+
 }

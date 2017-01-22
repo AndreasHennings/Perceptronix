@@ -1,18 +1,22 @@
 package CPU;
 
+import BUS.MessageListener;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 public class Brain
 {
 	Perceptron[] allPerceptrons;
+	MessageListener ml;
+	ResultSet rs;
+	ArrayList<String> keywords;
 	
-	public Brain(String[] categories)
+	public Brain(MessageListener ml, ResultSet rs, ArrayList<String>keywords)
 	{
-		allPerceptrons = new Perceptron[categories.length];
-		
-		for (int i = 0; i<allPerceptrons.length; i++)
-		{
-			allPerceptrons[i] = new Perceptron(categories[i]);			
-		}
-		
+		this.ml=ml;
+		this.rs=rs;
+		this.keywords=keywords;
 	}
 
 }

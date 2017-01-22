@@ -35,6 +35,7 @@ public class GithubBridge
 		for (String repo : repos)
 		{
 			String[] infos = repo.split("\\s");
+			if (infos[1]=="") {infos[1]="N/A";}
 			String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents"+accessToken;
 			ml.onMessage("Connecting to: "+r);
 			String s = getJSONfromGITHUB(r);
