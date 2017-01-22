@@ -105,7 +105,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 		if (allCategories.get(0) == "N/A")
 		{
-			new Brain(this, d.getData(), allKeywords);
+			new Brain(this, d.getData(), allKeywords, CATEGORIES);
 		}
 
 		else
