@@ -62,9 +62,26 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 			onMessage(allCategories.get(i));
 			d.updateEntry(allKeywords.get(i), allCategories.get(i));
 		}
-		//ResultSet rs = d.getData();
+		ResultSet rs = d.getData();
 
-		//System.out.println(rs.toString());
+		try
+		{
+			while (rs.next())
+            {
+				String result="";
+                result+= rs.getString("keyword");
+				for (String s : CATEGORIES)
+				{
+					result+=" "+rs.getInt(s);
+				}
+				onMessage(result);
+            }
+
+
+		} catch (SQLException e)
+		{
+			onMessage("Error reading database: "+e.getMessage().toString());
+		}
 
 	}
 

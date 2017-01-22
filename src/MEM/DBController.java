@@ -171,38 +171,19 @@ public class DBController
 
     public ResultSet getData()
     {
-
-
-
+        ResultSet result=null;
         try
         {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * from mytable");
+            result = statement.executeQuery("SELECT * from mytable");
+        }
 
-            String entry ="";
-            while (rs.next())
-            {
-
-                String keyword = rs.getString(1);
-                entry+=keyword+" ";
-
-
-                double c = rs.getDouble(2);
-                entry+=" "+c;
-                int[] nums = new int[7];
-                for (int i = 0; i < nums.length; i++)
-                {
-                    entry+= " "+rs.getInt(i + 3);
-                }
-            }
-            System.out.println(entry);
-
-        } catch (SQLException e)
+        catch (SQLException e)
         {
             e.printStackTrace();
         }
 
-        return null;
+        return result;
     }
 
     private void handleDB()
