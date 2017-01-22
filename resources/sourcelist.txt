@@ -1,3 +1,3 @@
 https://github.com/AndreasHennings/Perceptronix
-https://github.com/BloombergMedia/whatiscode
-https://github.com/raspberrypi/documentation
+https://github.com/AndreasHennings/Hangman
+https://github.com/AndreasHennings/Akira

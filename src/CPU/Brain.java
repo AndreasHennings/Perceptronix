@@ -14,6 +14,7 @@ public class Brain implements PerceptronListener
 	ArrayList<String> allKeywords;
 	String repoName;
 	String[]categories;
+	ArrayList<Perceptron>ps;
 
 	
 	public Brain(MessageListener ml, ResultSet rs, ArrayList<String>allKeywords, String repoName, String[]categories)
@@ -25,10 +26,12 @@ public class Brain implements PerceptronListener
 		this.categories=categories;
 		ml.onMessage("New Brain: "+repoName);
 
-		for(String cat : categories)
+		for(int i=0; i<categories.length; i++)
 		{
+			String cat=categories[i];
 			ml.onMessage("New Perceptron: "+cat+" "+repoName);
-			new Perceptron(cat,categories, allKeywords, repoName, rs, this);
+			new Perceptron(cat, categories, allKeywords, repoName, rs, this);
+
 		}
 
 	}
