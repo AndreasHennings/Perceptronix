@@ -55,16 +55,18 @@ public class DBController
             {
                 return;
             }
+
             System.out.println("Creating Connection to Database...");
+
             String path = System.getProperty("user.home") + "/" + "testdb.db";
             connection = DriverManager.getConnection("jdbc:sqlite:" + path);
             if (!connection.isClosed())
             {
-                System.out.println("...Connection established");
+                System.out.println("Connection to database successfully established");
             }
-        } catch (SQLException e)
+        } catch (Exception e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread()
@@ -94,7 +96,7 @@ public class DBController
         {
             Statement statement = connection.createStatement();
             //statement.executeUpdate("DROP TABLE IF EXISTS mytable");
-            statement.executeUpdate("CREATE TABLE mytable (" +
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS mytable (" +
                     "keyword, " +
                     "correlation, " +
                     "c1, " +
@@ -105,7 +107,7 @@ public class DBController
                     "c6, " +
                     "c7);");
 
-            ml.onMessage("Database table created");
+            System.out.println("Database table created");
         } catch (Exception e)
         {
             e.printStackTrace();

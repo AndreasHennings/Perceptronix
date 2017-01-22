@@ -28,9 +28,14 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 	public void start()
 	{
+		DBController d= DBController.getInstance();
+		d.main(this);
+
+		/*
 		ui = UserInterface.main();
 		ui.init(this);
 		onMessage("User Interface sucessfully initialized");
+		*/
 		//FileSysBridge.getAllStrings(this);
 		//new GithubBridge(this, this);
 		//
