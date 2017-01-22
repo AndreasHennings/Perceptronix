@@ -55,17 +55,17 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	{
 		DBController d= DBController.getInstance();
 		d.main(this, CATEGORIES);
-		/*
+
 		for (int i =0; i<allKeywords.size(); i++)
 		{
 			onMessage(allKeywords.get(i));
 			onMessage(allCategories.get(i));
 			d.updateEntry(allKeywords.get(i), allCategories.get(i));
 		}
-		ResultSet rs = d.getData();
+		//ResultSet rs = d.getData();
 
-		System.out.println(rs.toString());
-		*/
+		//System.out.println(rs.toString());
+
 	}
 
 	@Override

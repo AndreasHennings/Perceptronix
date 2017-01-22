@@ -98,7 +98,7 @@ public class DBController
         try
         {
             Statement statement = connection.createStatement();
-            //statement.executeUpdate("DROP TABLE IF EXISTS mytable");
+            statement.executeUpdate("DROP TABLE IF EXISTS mytable");
             String command = "CREATE TABLE IF NOT EXISTS mytable (keyword, ";
             for (int i =0; i<categories.length-1; i++)
             {
@@ -118,8 +118,11 @@ public class DBController
                     "c7);");
                     */
             statement.executeUpdate(command);
-            System.out.println("Database table created"+ command);
-        } catch (Exception e)
+
+            System.out.println(command);
+        }
+
+        catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -132,39 +135,36 @@ public class DBController
         try
         {
             Statement statement = connection.createStatement();
-
             String s = "UPDATE mytable SET " + cat + " = " + cat + " + 1 WHERE keyword = '" + keyword + "';";
+            int a =statement.executeUpdate(s);
 
-            int a = statement.executeUpdate(s);
-
-            if (a > 0)
-            {
-                System.out.println("value updated ");
-            }
+            if (a>0)
+            {ml.onMessage("Value updated");}
 
             else
             {
-                PreparedStatement ps = connection.prepareStatement("INSERT INTO mytable VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
-                ps.setString(1, keyword);
-                //System.out.println(keyword);
-                ps.setDouble(2, 0.0);
-                for (int i = 3; i < 10; i++)
+                String command="INSERT INTO mytable VALUES (";
+                command+="'"+keyword+"', ";
+                for (int i=0; i<categories.length-1; i++)
                 {
-                    ps.setInt(i, 0);
+                    command+="0, ";
                 }
+                command+="0);";
 
-                ps.execute();
-                System.out.println("entry made");
+                ml.onMessage(command);
+                statement.executeUpdate(command);
+                ml.onMessage("Entry created");
 
                 statement.executeUpdate("UPDATE mytable SET " + cat + " = " + cat + " + 1 WHERE keyword = '" + keyword + "';");
-                System.out.println("value updated2");
+                ml.onMessage("Updated new entry");
             }
         }
 
         catch (SQLException e)
         {
             e.printStackTrace();
+            ml.onMessage("Database Error");
         }
 
     }
