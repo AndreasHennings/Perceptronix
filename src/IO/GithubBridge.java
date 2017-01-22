@@ -45,7 +45,7 @@ public class GithubBridge
 				infos[1]="N/A";
 			}
 
-			String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents"+accessToken;
+			String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents";
 			ml.onMessage("Connecting to: "+r);
 			String s = getJSONfromGITHUB(r);
 			processJSON(s, infos);

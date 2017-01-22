@@ -101,7 +101,9 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	@Override
 	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
 	{
-		onMessage("Download Finished!");
+		onMessage("Download Finished! "+ Integer.toString(allKeywords.size())+" "+Integer.toString(allCategories.size()));
+
+
 
 		if (allCategories.get(0) == "N/A")
 		{
@@ -117,6 +119,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 				d.updateEntry(allKeywords.get(i), allCategories.get(i));
 			}
 		}
+
 	}
 
 	@Override
