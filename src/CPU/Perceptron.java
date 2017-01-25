@@ -1,8 +1,6 @@
 package CPU;
 
 import BUS.PerceptronListener;
-
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Perceptron
@@ -43,7 +41,20 @@ public class Perceptron
                     sum += ds.getValues()[i];
                 }
 
-                result += num / sum;
+                double ratio = num/sum;
+                double calcVal;
+
+                if (ratio>=(1/7))
+                {
+                    calcVal = (ratio-1/7)*7/6;
+                }
+
+                else
+                {
+                    calcVal = (ratio*-7)-1;
+                }
+
+                result+=calcVal;
             }
         }
 

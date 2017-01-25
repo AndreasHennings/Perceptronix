@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/resources/json-20160810.jar!/" />
       <root url="jar://$PROJECT_DIR$/resources/sqlite-jdbc-3.16.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resources/core.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
