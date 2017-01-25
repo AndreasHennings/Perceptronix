@@ -3,76 +3,61 @@ package CPU;
 import BUS.PerceptronListener;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Perceptron
 {
 
-	String name;
-	ArrayList<String> keywords;
-	String repoName;
-	ResultSet rs;
-	PerceptronListener pl;
-	String[] categories;
-	double result;
 
-	
-	public Perceptron(String name, String[] categories, ArrayList<String> keywords, String repoName, ResultSet rs, PerceptronListener pl)
-	{
+    ArrayList<String> keywords;
+    String repoName;
+    PerceptronListener pl;
+    String[] categories;
+    double result;
 
-		this.name = name;
-		this.keywords = keywords;
-		this.repoName = repoName;
-		this.rs = rs;
-		this.pl = pl;
-		this.categories = categories;
-		result=0.0;
-		System.out.println("Perceptron: " + name); //Hier stimmts noch, name = kategorie
 
-		try
-		{
-			int counter=0;
+    public Perceptron(String category, String[] categories, ArrayList<String> keywords, String repoName, ArrayList<DataSet> DBdataSet, PerceptronListener pl)
+    {
+        this.keywords = keywords;
+        this.repoName = repoName;
+        this.pl = pl;
+        this.categories = categories;
+        result = 0.0;
+        System.out.println("Perceptron: " + category);
 
-			while (rs.next())
+        int counter = 0;
+
+        for (DataSet ds : DBdataSet)
+        {
+            String DB_Keyword = ds.getKeyword();
+
+            if (keywords.contains(DB_Keyword))
             {
-				String s = rs.getString("keyword");
+                counter++;
 
+                int num = ds.getValueByCategory(category);
+                int sum = 0;
 
-				if (keywords.contains(s))
-				{
-					System.out.println("Match found: "+s+" "+repoName+" "+name);
-					counter++;
-					int num = rs.getInt(name);
-					int sum = 0;
-					for (int i = 0; i<categories.length; i++ )
-					{
-						//System.out.println(rs.getInt(categories[i]));
-						sum+= rs.getInt(categories[i]);
-					}
+                for (int i = 0; i < ds.getValues().length; i++)
+                {
+                    sum += ds.getValues()[i];
+                }
 
-					result+= num/sum;
-				}
-
+                result += num / sum;
             }
-			if (counter>0)
-			{
-				result = result / counter;
-			}
+        }
 
-			else
-			{
-				result=0.0;
-			}
-		}
+        if (counter > 0)
+        {
+            result = result / counter;
+        }
 
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+        else
+        {
+            result = 0.0;
+        }
 
-
-		pl.onCalculationFinished(repoName+": "+name+" ", result);
-	}
+        pl.onCalculationFinished(category, result);
+    }
 
 }

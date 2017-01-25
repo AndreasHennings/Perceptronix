@@ -1,3 +1,1 @@
 https://github.com/AndreasHennings/Perceptronix
-https://github.com/AndreasHennings/Hangman
-https://github.com/AndreasHennings/Akira

@@ -133,20 +133,11 @@ public class GithubBridge
 
 				String[] filename = name.split("\\.");
 
-				try
-				{
-					allKeywords.add("FILENAME_" + filename[0]);
-					allCategories.add(infos[1]);
-				}
-				catch (Exception e){}
+				allKeywords.add("FILENAME_" + filename[0]);
+				allCategories.add(infos[1]);
 
-				try
-				{
-					allKeywords.add("FILETYPE_" + filename[1]);
-					allCategories.add(infos[1]);
-				}
-
-				catch (Exception e){}
+				allKeywords.add("FILETYPE_" + filename[1]);
+				allCategories.add(infos[1]);
 			}
 		}
 	}

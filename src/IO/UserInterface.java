@@ -36,9 +36,7 @@ public class UserInterface extends JPanel
         frame.setVisible(true);
 
         return ui;
-
     }
-
 
     public UserInterface ()
     {
@@ -55,12 +53,6 @@ public class UserInterface extends JPanel
             {
                 String filename=trainFilename.getText();
                 bl.onButtonPressed("train", filename);
-
-                /*
-                JFileChooser fc;
-                fc = new JFileChooser();
-                int returnVal = fc.showOpenDialog(UserInterface.this);
-                */
             }
 
         });

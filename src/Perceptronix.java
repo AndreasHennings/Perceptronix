@@ -3,6 +3,7 @@ import BUS.DownloadListener;
 import BUS.FileOperationListener;
 import BUS.MessageListener;
 import CPU.Brain;
+import CPU.DataSet;
 import IO.FileSysBridge;
 import IO.GithubBridge;
 import IO.UserInterface;
@@ -15,12 +16,9 @@ import java.util.ArrayList;
 
 public class Perceptronix implements DownloadListener, MessageListener, ButtonListener, FileOperationListener
 {
-	/**
-	 * @param args
-	 */
+	public static final String[] CATEGORIES = Config.CATEGORIES;
 
 	UserInterface ui;
-	public static final String[] CATEGORIES = Config.CATEGORIES;
 	DBController d;
 
 	public static void main(String[] args)
@@ -42,35 +40,14 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	@Override
 	public void onButtonPressed(String which, String filename)
 	{
-		switch (which)
-		{
-			case "train":
-				trainAI(filename);
-				break;
-			case "categorize":
-				categorize(filename);
-				break;
-			default: break;
-		}
-	}
-
-	private void trainAI(String filename)
-	{
-		onMessage("Accessing file");
+		onMessage("Accessing file: "+filename);
 		FileSysBridge.getAllStrings(this, this, filename);
-	}
-
-	private void categorize(String filename)
-	{
-		onMessage("Accessing file");
-		FileSysBridge.getAllStrings(this, this, filename);
-
 	}
 
 	@Override
 	public void onFileOperationFinished(ArrayList<String> repos)
 	{
-		onMessage("File read");
+		onMessage("File operation finished");
 
 		for (String repo : repos)
 		{
@@ -81,9 +58,20 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	@Override
 	public void onDownloadFinished(ArrayList<String> allKeywords, ArrayList<String> allCategories)
 	{
-		onMessage("Download Finished! "+ Integer.toString(allKeywords.size())+" "+Integer.toString(allCategories.size()));
+		onMessage("Download finished, received keywords: "+ Integer.toString(allKeywords.size()));
 
 		ArrayList<String> usedRepos = new ArrayList<String>();
+		ArrayList<DataSet> dataSet = null;
+
+		try
+		{
+			dataSet = getDataSet();
+		}
+
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 
 		for (int i=0; i<allCategories.size(); i++)
 		{
@@ -92,10 +80,13 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 			if (cat.startsWith("https"))
 			{
+
 				if (!usedRepos.contains(cat))
 				{
 					usedRepos.add(cat);
-					new Brain(this, d.getData(), allKeywords, cat, CATEGORIES);
+					String repoURL = cat;
+
+					new Brain(repoURL, allKeywords, dataSet,CATEGORIES, this);
 				}
 			}
 
@@ -115,10 +106,24 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 	}
 
 
+	public ArrayList<DataSet> getDataSet() throws SQLException
+	{
+		ArrayList<DataSet> dataSet = new ArrayList<>();
+		ResultSet resultSet = d.getData();
+		while (resultSet.next())
+		{
+			String keyword = resultSet.getString("keyword");
 
+			int[]values=new int[CATEGORIES.length];
 
+			for (int i=0; i< values.length; i++)
+			{
+				values[i]=resultSet.getInt(CATEGORIES[i]);
+			}
 
-
-
-
+			DataSet ds = new DataSet(keyword,values);
+			dataSet.add(ds);
+		}
+		return dataSet;
+	}
 }

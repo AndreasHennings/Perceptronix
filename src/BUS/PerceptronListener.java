@@ -1,5 +1,7 @@
 package BUS;
 
+import java.sql.ResultSet;
+
 /**
  * Created by aend on 22.01.17.
  */
