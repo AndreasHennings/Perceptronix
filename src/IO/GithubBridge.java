@@ -41,7 +41,7 @@ public class GithubBridge
 			String t =infos[0];
 			infos= new String[2];
 			infos[0]=t;
-			infos[1]=repo;
+			infos[1]=t;
 		}
 
 		String r = "https://api.github.com/repos/"+infos[0].substring(19)+"/contents";
@@ -136,8 +136,13 @@ public class GithubBridge
 				allKeywords.add("FILENAME_" + filename[0]);
 				allCategories.add(infos[1]);
 
-				allKeywords.add("FILETYPE_" + filename[1]);
-				allCategories.add(infos[1]);
+				if (filename.length>1)
+				{
+
+					allKeywords.add("FILETYPE_" + filename[1]);
+					allCategories.add(infos[1]);
+				}
+
 			}
 		}
 	}

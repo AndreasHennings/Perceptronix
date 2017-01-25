@@ -59,8 +59,9 @@ public class DBController
             }
 
             System.out.println("Creating Connection to Database...");
+            String path = "./resources/testdb.db";
 
-            String path = System.getProperty("user.home") + "/" + "testdb.db";
+            //String path = System.getProperty("user.home") + "/" + "testdb.db";
             connection = DriverManager.getConnection("jdbc:sqlite:" + path);
             if (!connection.isClosed())
             {

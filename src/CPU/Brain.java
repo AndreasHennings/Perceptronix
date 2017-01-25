@@ -45,7 +45,8 @@ public class Brain implements PerceptronListener
 
 		for (ValueSet vs : valueSets)
 		{
-			double res = (vs.getVal()+1)*50;
+			//double res = (vs.getVal()+1)*50;
+			double res = vs.getVal();
 			ml.onMessage("Probability for "+repoURL+" to be in category "+vs.getCat()+" is "+res+" percent");
 			if (vs.getVal()>max)
 			{
