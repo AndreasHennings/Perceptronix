@@ -109,7 +109,7 @@ public class GithubBridge
 
 			if (type.equals("dir") || type.equals("tree"))
 			{
-				allKeywords.add("DIRECTORY_"+name);
+				allKeywords.add("DIRECTORY_"+name.toLowerCase());
 				allCategories.add(infos[1]);
 
 				if (type.equals("tree"))
@@ -133,13 +133,13 @@ public class GithubBridge
 
 				String[] filename = name.split("\\.");
 
-				allKeywords.add("FILENAME_" + filename[0]);
+				allKeywords.add("FILENAME_" + filename[0].toLowerCase());
 				allCategories.add(infos[1]);
 
 				if (filename.length>1)
 				{
 
-					allKeywords.add("FILETYPE_" + filename[1]);
+					allKeywords.add("FILETYPE_" + filename[1].toLowerCase());
 					allCategories.add(infos[1]);
 				}
 
