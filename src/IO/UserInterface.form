@@ -37,7 +37,7 @@
               <caretColor color="-15300559"/>
               <editable value="true"/>
               <foreground color="-16777216"/>
-              <text value="defaultList.txt"/>
+              <text value="completeList.txt"/>
             </properties>
           </component>
           <component id="ed196" class="javax.swing.JButton" binding="trainAIUsingListButton">
