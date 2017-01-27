@@ -2,7 +2,7 @@ import BUS.ButtonListener;
 import BUS.DownloadListener;
 import BUS.FileOperationListener;
 import BUS.MessageListener;
-import CPU.Brain;
+import CPU.SingleCore;
 import CPU.DataSet;
 import IO.FileSysBridge;
 import IO.GithubBridge;
@@ -86,7 +86,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 					usedRepos.add(cat);
 					String repoURL = cat;
 
-					new Brain(repoURL, allKeywords, dataSet,CATEGORIES, this);
+					new SingleCore(repoURL, allKeywords, dataSet,CATEGORIES, this);
 				}
 			}
 

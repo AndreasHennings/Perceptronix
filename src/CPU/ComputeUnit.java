@@ -3,7 +3,7 @@ package CPU;
 import BUS.PerceptronListener;
 import java.util.ArrayList;
 
-public class Perceptron
+public class ComputeUnit
 {
 
 
@@ -14,14 +14,14 @@ public class Perceptron
     double result;
 
 
-    public Perceptron(String category, String[] categories, ArrayList<String> keywords, String repoName, ArrayList<DataSet> DBdataSet, PerceptronListener pl)
+    public ComputeUnit(String category, String[] categories, ArrayList<String> keywords, String repoName, ArrayList<DataSet> DBdataSet, PerceptronListener pl)
     {
         this.keywords = keywords;
         this.repoName = repoName;
         this.pl = pl;
         this.categories = categories;
         result = 0.0;
-        System.out.println("Perceptron: " + category);
+        System.out.println("ComputeUnit: " + category);
 
         int counter = 0;
 

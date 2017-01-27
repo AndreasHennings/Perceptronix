@@ -3,10 +3,9 @@ package CPU;
 import BUS.MessageListener;
 import BUS.PerceptronListener;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class Brain implements PerceptronListener
+public class SingleCore implements PerceptronListener
 {
 	MessageListener ml;
 	ArrayList<String> allKeywords;
@@ -14,20 +13,20 @@ public class Brain implements PerceptronListener
 	String[]categories;
 	ArrayList<ValueSet>valueSets;
 	
-	public Brain(String repoURL, ArrayList<String>allKeywords, ArrayList<DataSet> dataSet, String[]categories, MessageListener ml)
+	public SingleCore(String repoURL, ArrayList<String>allKeywords, ArrayList<DataSet> dataSet, String[]categories, MessageListener ml)
 	{
 		this.ml=ml;
 		this.allKeywords =allKeywords;
 		this.repoURL=repoURL;
 		this.categories=categories;
-		ml.onMessage("New Brain for Repo: "+repoURL);
+		ml.onMessage("New SingleCore for Repo: "+repoURL);
 		valueSets=new ArrayList<>();
 
 		for(int i=0; i<categories.length; i++)
 		{
 			String cat=categories[i];
-			new Perceptron(cat, categories, allKeywords, repoURL, dataSet, this);
-			ml.onMessage("New Perceptron for category: "+cat);
+			new ComputeUnit(cat, categories, allKeywords, repoURL, dataSet, this);
+			ml.onMessage("New ComputeUnit for category: "+cat);
 		}
 
 		while (valueSets.size()< categories.length)

@@ -19,7 +19,7 @@ public class GithubBridge
 {
 	DownloadListener downloadListener;
 	MessageListener ml;
-	private String accessToken="?access_token=223cec6def233a80705e3203f6c6c5fedada0ccd";
+	//private String accessToken="?<insert token here";
 
 	ArrayList<String> allKeywords;
 	ArrayList<String> allCategories;
@@ -116,7 +116,7 @@ public class GithubBridge
 				{
 					try
 					{
-						String dirURL = "" + infos[0] + "/git/trees/" + jsonObject.getString("sha") + "?recursive=1"+accessToken;
+						String dirURL = "" + infos[0] + "/git/trees/" + jsonObject.getString("sha") + "?recursive=1";// add +accessToken to String if you entered one above
 						ml.onMessage("Connecting to: "+dirURL);
 						processJSON(getJSONfromGITHUB(dirURL), infos);
 					}
