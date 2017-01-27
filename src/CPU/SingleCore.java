@@ -44,13 +44,13 @@ public class SingleCore implements PerceptronListener
 
 		for (ValueSet vs : valueSets)
 		{
-			//double res = (vs.getVal()+1)*50;
-			double res = vs.getVal();
+			double res = (vs.getVal()+1)*50;
+
 			ml.onMessage("Probability for "+repoURL+" to be in category "+vs.getCat()+" is "+res+" percent");
-			if (vs.getVal()>max)
+			if (res>max)
 			{
 				resultCat = vs.getCat();
-				max=vs.getVal();
+				max=res;
 			}
 		}
 

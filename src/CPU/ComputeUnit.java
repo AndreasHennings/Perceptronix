@@ -12,7 +12,7 @@ public class ComputeUnit
     PerceptronListener pl;
     String[] categories;
     double result;
-
+    double inverse;
 
     public ComputeUnit(String category, String[] categories, ArrayList<String> keywords, String repoName, ArrayList<DataSet> DBdataSet, PerceptronListener pl)
     {
@@ -21,7 +21,8 @@ public class ComputeUnit
         this.pl = pl;
         this.categories = categories;
         result = 0.0;
-        System.out.println("ComputeUnit: " + category);
+        inverse = 1.0/categories.length;
+        System.out.println("ComputeUnit: " + category+"dataSize: "+DBdataSet.size()+ "Inverse: "+inverse);
 
         int counter = 0;
 
@@ -29,34 +30,35 @@ public class ComputeUnit
         {
             String DB_Keyword = ds.getKeyword();
 
+
             if (keywords.contains(DB_Keyword))
             {
                 counter++;
 
-                int num = ds.getValueByCategory(category);
-                int sum = 0;
+                double num = (double) ds.getValueByCategory(category);
+                double sum = 0.0;
+
+                System.out.println("Match found: keyword "+DB_Keyword+" in category "+category+"num: "+num);
 
                 for (int i = 0; i < ds.getValues().length; i++)
                 {
+                    System.out.println(categories[i]+": "+ds.getValues()[i]);
                     sum += ds.getValues()[i];
                 }
 
+                System.out.println("Sum of all: "+sum);
+
                 double ratio = num/sum;
-                double calcVal;
+                System.out.println("Ratio: "+ratio);
 
-                if (ratio>=(1/7))
-                {
-                    calcVal = (ratio-1/7)*7/6;
-                }
+                double calcVal=dataSetStatisticCorrelation(ratio);
 
-                else
-                {
-                    calcVal = (ratio*-7)-1;
-                }
-
+                System.out.println("Value of Dataset: "+calcVal);
                 result+=calcVal;
+                System.out.println("Result: "+result);
             }
         }
+
 
         if (counter > 0)
         {
@@ -68,7 +70,23 @@ public class ComputeUnit
             result = 0.0;
         }
 
+
         pl.onCalculationFinished(category, result);
+    }
+
+    private double dataSetStatisticCorrelation(double ratio)
+    {
+        if (ratio >= inverse)
+        {
+            System.out.println("Hi");
+            return  (ratio-inverse)*(categories.length/categories.length-1);
+        }
+
+        else
+        {
+            System.out.println("Lo");
+            return (ratio * categories.length)-1;
+        }
     }
 
 }
