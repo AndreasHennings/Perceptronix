@@ -79,7 +79,7 @@ public class ComputeUnit
         if (ratio >= inverse)
         {
             System.out.println("Hi");
-            return  (ratio-inverse)*(categories.length/categories.length-1);
+            return  (ratio-inverse)*(categories.length/(categories.length-1));
         }
 
         else

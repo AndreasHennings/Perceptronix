@@ -56,15 +56,15 @@ public class GithubBridge
 	private String getJSONfromGITHUB(String urlAsString)
 	{
 		String jsonString = "";
-		
+
 		try
 		{
 			URL url = new URL(urlAsString);
 
 			HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 			ml.onMessage("Connection status: "+Integer.toString(connection.getResponseCode()));
-
-			if (connection.getResponseCode() == HttpsURLConnection.HTTP_OK)
+			int respCode = connection.getResponseCode();
+			if (respCode == HttpsURLConnection.HTTP_OK)
 			{
 				InputStream is = connection.getInputStream();
 				BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -76,12 +76,19 @@ public class GithubBridge
 				br.close();
 				is.close();
 			}
+
+			else
+			{
+				ml.onMessage("Error. ResposeCode: "+respCode);
+			}
 			connection.disconnect();
+
+
 		}
 
 		catch (IOException e)
 		{
-			ml.onMessage("Connection error: "+e.getMessage().toString());
+			ml.onMessage("Connection error");
 		}
 
 		return jsonString;

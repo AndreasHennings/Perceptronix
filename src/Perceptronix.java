@@ -81,6 +81,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 			if (cat.startsWith("https"))
 			{
 
+
 				if (!usedRepos.contains(cat))
 				{
 					usedRepos.add(cat);
@@ -88,6 +89,7 @@ public class Perceptronix implements DownloadListener, MessageListener, ButtonLi
 
 					new SingleCore(repoURL, allKeywords, dataSet,CATEGORIES, this);
 				}
+
 			}
 
 			else
